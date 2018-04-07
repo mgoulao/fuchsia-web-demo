@@ -78,8 +78,6 @@ $(document).ready(function () {
     var appHistoryMax;
     function setAppHistoryTop() {
         appHistoryslideHeight = -appHistory.height() + 180;
-        console.log("appHistoryslideHeight", appHistoryslideHeight);
-        console.log("App history", appHistory.height());
         if ($("body").width() < 800) {
             appHistoryslideHeight = -appHistory.height() +130;
             appHistory.css({ "top": appHistoryslideHeight });
@@ -264,7 +262,7 @@ $(document).ready(function () {
         openedAppObj = new App(cardId);
     });
 
-    appContainer.click(function (e) {
+    $("#app_history").on("click", ".app_container" , function (e) {
         console.log("Click Card: ", e.currentTarget.id);
         var cardId = e.currentTarget.id;
         openedAppObj = new App(cardId);
@@ -364,35 +362,6 @@ $(document).ready(function () {
 
     });
 
-    //Get User Location
-    /*function codeLatLng(lat, lng) {
-        var geocoder = new google.maps.Geocoder();
-        var latlng = new google.maps.LatLng(lat, lng);
-        geocoder.geocode({ 'latLng': latlng }, function (results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                console.log(results)
-                var location = results[4].formatted_address;
-                statusLocation.text("in " + location);
-            } else {
-                alert("Geocoder failed due to: " + status);
-            }
-        });
-    }
-
-
-    function success(pos) {
-        var crd = pos.coords;
-        var lat = crd.latitude;
-        var lng = crd.longitude;
-        codeLatLng(lat, lng)
-    }
-
-    function error(err) {
-        console.warn(`ERROR(${err.code}): ${err.message}`);
-    }
-
-    navigator.geolocation.getCurrentPosition(success, error);
-    */
     var appData = {
         "inbox": {
             "title": "Inbox",
@@ -461,7 +430,7 @@ $(document).ready(function () {
 
         getApp(index) {
             var id = this.appList[index]
-            return appData[id];
+            return [appData[id], id];
         }
 
         refreshList(app) {
@@ -475,19 +444,19 @@ $(document).ready(function () {
         }
 
         updateUI() {
-            console.log("Open Apps size:", this.openAppsSize());
             bigCards.empty();
             smallCards.empty();
 
             for (var i = 0; i < this.openAppsSize(); i++) {
-                var app = this.getApp(i);
+                var app = this.getApp(i)[0];
+                var id = this.getApp(i)[1];
                 var card = '<div class="history_card" style="border-top: 5px solid '+app.color+'"></div>';
                 if (this.openAppsSize() - i < 3) {
-                    bigCards.append('<div class="app_container" id="' + app.id + '">' + card +
+                    bigCards.append('<div class="app_container" id="' + id + '">' + card +
                         '<h6>' + app.title + '</h6>' +
                         '</div>');
                 } else {
-                    smallCards.append('<div class="app_container" id="' + app.id + '">' + card +
+                    smallCards.append('<div class="app_container" id="' + id + '">' + card +
                         '<h6>' + app.title + '</h6>' +
                         '</div>');
                 }
