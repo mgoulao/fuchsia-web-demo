@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript">
+        var host = "mgoulao.github.io"
+        if (window.location.host == host && window.location.protocol != "https:") {
+            window.location.protocol = "https:"
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="manifest.json">
+    <link rel="shortcut icon" type="image/png" href="resources/favicon.png" />
+    <title>Fuchsia</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="css/mdl.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+</head>
+
+<body>
+
+    <div class="obfuscator"></div>
+
+    <div id="lockscreen">
+        <div class="obfuscator"></div>
+        <h3 id="lockscreen_hour">00:00</h3>
+        <div id="login_loader" class="loader"></div>
+        <button class="icon_round_button" id="lock_options_button">
+            <i class="material-icons">add</i>
+        </button>
+        <div class="lock_options">
+            <button class="icon_round_button" id="lock_options_close">
+                <i class="material-icons">close</i>
+            </button>
+            <button class="text_round_button" id="lock_options_wifi">
+                Wifi
+            </button>
+            <button class="text_round_button" id="lock_options_login">
+                Login
+            </button>
+            <button class="text_round_button" id="lock_options_guest">
+                Guest
+            </button>
+        </div>
+    </div>
+
+    <div class="navbar">
+        <div id="navbar_battery">
+            <span class="battery_level">0%</span>
+            <i class="battery_icon material-icons">battery_full</i>
+        </div>
+        <span id="navbar_time">8:33</span>
+        <div id="home_button">
+            <svg viewBox="0 0 24 24">
+                <path fill="#fff" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+            </svg>
+        </div>
+
+    </div>
+
+    <div class="navbar_2">
+        <span id="navbar_time">8:33</span>
+        <div id="home_button">
+            <svg viewBox="0 0 24 24">
+                <path fill="#fff" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+            </svg>
+        </div>
+    </div>
+
+    <div class="status_bar" unselectable="on">
+        <div class="status_date">
+            <span class="status_hour">00:00</span>
+            <div>
+                <h6 class="status_day">SUNDAY, january 1</h6>
+                <h6 class="status_location">in Your Location</h6>
+            </div>
+        </div>
+        <div class="fuchsia">
+                <img src="http://web.tecnico.ulisboa.pt/ist191049/resources/profile.jpg">
+
+        </div>
+        <div class="status">
+            <div>
+                <span>GoogleWifi</span>
+                <i class="material-icons">network_wifi</i>
+            </div>
+            <div>
+                <span class="battery_level">0%</span>
+                <i class="battery_icon material-icons">battery_full</i>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu" id="menu_2">
+        <div class="status_bar">
+            <div class="status_date">
+                <span class="status_hour">00:00</span>
+                <div>
+                    <h6 class="status_day">SUNDAY, january 1</h6>
+                    <h6 class="status_location">in Your Location</h6>
+                </div>
+            </div>
+            <div class="fuchsia">
+                <img src="http://web.tecnico.ulisboa.pt/ist191049/resources/profile.jpg">
+
+            </div>
+            <div class="status">
+                <div>
+                    <span>GoogleWifi</span>
+                    <i class="material-icons">network_wifi</i>
+                </div>
+                <div>
+                    <span class="battery_level">0%</span>
+                    <i class="battery_icon material-icons">battery_full</i>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu_option menu_key_board">
+            <i class="material-icons">keyboard</i>
+            <span class="option_title">US keyboard</span>
+            <i class="material-icons">chevron_right</i>
+        </div>
+        <div class="menu_option menu_wifi">
+            <i class="material-icons">wifi_lock</i>
+            <span class="option_title">Network</span>
+            <i class="material-icons">chevron_right</i>
+        </div>
+        <div class="menu_option menu_bluetooth">
+            <i class="material-icons">bluetooth</i>
+            <span class="option_title">Bluetooth</span>
+            <i class="material-icons">chevron_right</i>
+        </div>
+        <div class="menu_option menu_cast">
+            <i class="material-icons">cast</i>
+            <span class="option_title">Cast</span>
+            <i class="material-icons">chevron_right</i>
+        </div>
+        <div class="menu_option menu_volume">
+            <i class="volume_upicon material-icons">volume_up</i>
+            <span class="option_title">Volume</span>
+            <input class="mdl-slider mdl-js-slider" type="range" min="0" max="100" value="20" tabindex="0">
+        </div>
+        <div class="menu_option menu_screen">
+            <i class="material-icons">settings_brightness</i>
+            <span class="option_title">Brightness</span>
+            <input class="mdl-slider mdl-js-slider" type="range" min="0" max="100" value="40" tabindex="0">
+        </div>
+        <div class="menu_option menu_settings">
+            <i class="material-icons">settings</i>
+            <span class="option_title">Settings</span>
+            <i class="material-icons">chevron_right</i>
+        </div>
+        <div class="menu_option">
+            <button class="signout mdl-button mdl-js-button mdl-js-ripple-effect">
+                Sign out
+            </button>
+        </div>
+    </div>
+
+    <div class="menu" id="menu">
+        <div class="menu_option menu_user">
+            <img class="user_icon" src="http://web.tecnico.ulisboa.pt/ist191049/resources/profile.jpg">
+
+            <span class="username">Manuel Goulao</span>
+            <!-- <div class="email">nmcain@gmail.com</div>-->
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect">
+                Sign out
+            </button>
+        </div>
+        <div class="menu_option menu_key_board">
+            <i class="material-icons">keyboard</i>
+            <span class="option_title">US keyboard</span>
+            <i class="material-icons">chevron_right</i>
+        </div>
+        <div class="menu_option menu_wifi">
+            <i class="material-icons">wifi_lock</i>
+            <span class="option_title">Network</span>
+            <i class="material-icons">chevron_right</i>
+        </div>
+        <div class="menu_option menu_bluetooth">
+            <i class="material-icons">bluetooth</i>
+            <span class="option_title">Bluetooth</span>
+            <i class="material-icons">chevron_right</i>
+        </div>
+        <div class="menu_option menu_cast">
+            <i class="material-icons">cast</i>
+            <span class="option_title">Cast</span>
+            <i class="material-icons">chevron_right</i>
+        </div>
+        <div class="menu_option menu_volume">
+            <i class="volume_upicon material-icons">volume_up</i>
+            <span class="option_title">Volume</span>
+            <input style "margin-top:15px;" class="mdl-slider mdl-js-slider" type="range" min="0" max="100" value="80" tabindex="0" />
+        </div>
+        <div class="menu_option menu_settings">
+            <i class="material-icons">settings</i>
+            <span class="option_title">Settings</span>
+            <i class="material-icons">chevron_right</i>
+        </div>
+        <div class="menu_option menu_notify">
+            <span class="date">Wednesday, February 28</span>
+            <button class="mdl-button mdl-js-button mdl-button--icon">
+                <i class="material-icons">help_outline</i>
+            </button>
+            <button class="mdl-button mdl-js-button mdl-button--icon">
+                <i class="material-icons">power_settings_new</i>
+            </button>
+            <button class="mdl-button mdl-js-button mdl-button--icon">
+                <i class="material-icons">lock_outline</i>
+            </button>
+        </div>
+
+    </div>
+
+    <div id="home" unselectable="on">
+        <div class="google_search">
+            <img class="google_logo" src="resources/google_icon.png">
+            <input class="search_input" placeholder="Ask for anything">
+            <h4 id="dummy_input" class="active">Ask for anything</h4>
+            <img class="assistant_logo" src="resources/google_assistant_logo.png">
+        </div>
+
+        <div class="apps">
+            <div class="home_cards">
+                <div class="card" id="inbox">
+                    <img class="card_image" src="resources/ginbox_icon.png">
+                    <div class="card-content">
+                        <h6 class="card_header">Inbox</h6>
+                        <h5 class="card_text">You received a new email</h5>
+                    </div>
+                </div>
+                <div class="card" id="recipes">
+                    <img class="card_image" src="resources/recipes.jpg">
+                    <div class="card-content">
+                        <h6 class="card_header">Google</h6>
+                        <h5 class="card_text">See recipes for you</h5>
+                    </div>
+                </div>
+                <div class="card" id="maps">
+                    <img class="card_image" src="resources/ist.png">
+                    <div class="card-content">
+                        <h6 class="card_header">Maps</h6>
+                        <h5 class="card_text">45 min drive to Work</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="opened_app">
+        <header>
+            <span id="app_title">Title</span>
+        </header>
+        <div id="app_content">Content</div>
+    </div>
+
+    <div id="app_history" unselectable="on">
+        <div class="small_cards">
+            <div class="app_container" id="app1">
+                <div class="history_card"></div>
+                <h6>Story Theta</h6>
+            </div>
+
+            <div class="app_container" id="app2">
+                <div class="history_card"></div>
+                <h6>Story Iota</h6>
+            </div>
+            <div class="app_container" id="app3">
+                <div class="history_card"></div>
+                <h6>Story Eta</h6>
+            </div>
+        </div>
+
+        <div class="big_cards">
+            <div class="app_container" id="app4">
+                <div class="history_card"></div>
+                <h6>Story Zeta</h6>
+            </div>
+            <div class="app_container" id="app5">
+                <div class="history_card"></div>
+                <h6>Story Alpha</h6>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClIi_QsVzwnWetSX7GsAy0nL_ivAp54-8&sensor=false"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/material.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
