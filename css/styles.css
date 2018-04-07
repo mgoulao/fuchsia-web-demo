@@ -673,6 +673,7 @@ button {
 .small_cards {
     position: relative;
     width: 85%;
+    min-height: 150px;
     margin: 0 auto 32px auto;
     display: grid;
     grid-template-columns: var(--app-history-grid-columns);
@@ -716,7 +717,6 @@ button {
     height: 85%;
     background: #fff;
     border-radius: 4px;
-    border-top: 5px solid #ff9800;
 }
 
 .loader {
