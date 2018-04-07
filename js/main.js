@@ -376,7 +376,7 @@ $(document).ready(function () {
         "maps": {
             "title": "Maps",
             "color": "#689df6",
-            "content": "Content"
+            "content": "<h2>Content</h2>"
         },
         "app1": {
             "title": "App1",
