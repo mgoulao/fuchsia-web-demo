@@ -154,12 +154,14 @@ $(document).ready(function () {
         loginLoader.show();
         setTimeout(function () {
             loginLoader.hide();
-            lockScreen.hide();
-            lockHour.show();
-            lockOptionsButton.show();
-            lockOptionsButton.css('opacity', '1');
-            lockOptions.removeClass("active");
-            lockOptions.css('opacity', '0');
+            lockScreen.fadeTo("fast", 0,()=> {
+                lockScreen.hide();
+                lockHour.show();
+                lockOptionsButton.show();
+                lockOptionsButton.css('opacity', '1');
+                lockOptions.removeClass("active");
+                lockOptions.css('opacity', '0');
+            });
         }, 2000);
 
     });
@@ -197,6 +199,7 @@ $(document).ready(function () {
 
     signOutButton.click(function () {
         lockScreen.show();
+        lockScreen.fadeTo("fast", 1);
         statusMenu.removeClass("active");
         showHome();
     });
