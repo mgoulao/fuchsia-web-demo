@@ -1,5 +1,11 @@
 'use strict';
 
+// Fix Viewport Height caused by the keyboard
+let viewheight = $(window).height();
+let viewwidth = $(window).width();
+let viewport = document.querySelector("meta[name=viewport]");
+viewport.setAttribute("content", "height=" + viewheight + "px, width=" + viewwidth + "px, initial-scale=1.0");
+
 function getMonth(m) {
     switch (m) {
         case 1: m = "JAN";
@@ -39,6 +45,7 @@ $(document).ready(function () {
     var navbarTime = $("#navbar_time");
     var navbar = $(".navbar");
     var homeButton = $("#home_button");
+    var homeCards = $(".home_cards");
     var menu = $("#menu");
     var statusMenu = $("#menu_2");
     var home = $("#home");
@@ -79,7 +86,7 @@ $(document).ready(function () {
     function setAppHistoryTop() {
         appHistoryslideHeight = -appHistory.height() + 180;
         if ($("body").width() < 800) {
-            appHistoryslideHeight = -appHistory.height() +130;
+            appHistoryslideHeight = -appHistory.height() + 130;
             appHistory.css({ "top": appHistoryslideHeight });
         } else {
             appHistory.css({ "top": appHistoryslideHeight });
@@ -89,12 +96,94 @@ $(document).ready(function () {
     }
     setAppHistoryTop();
 
+    var appDataList = [
+        {
+            "title": "Inbox",
+            "color": "#4285f4",
+            "id": "inbox",
+            "image": "resources/ginbox_icon.png",
+            "source": "Inbox",
+            "text": "You received a new email",
+            "content": "<h2>Content</h2>"
+        },
+        {
+            "title": "Recipes",
+            "color": "#455A64",
+            "id": "recipes",
+            "image": "resources/recipes.jpg",
+            "source": "Google",
+            "text": "See recipes for you",
+            "content": "<h2>Content</h2>"
+        },
+        {
+            "title": "Maps",
+            "color": "#689df6",
+            "id": "maps",
+            "image": "resources/ist.png",
+            "source": "Maps",
+            "text": "45 min drive to Work",
+            "content": "<h2>Content</h2>"
+        },
+        {
+            "title": "Alpha",
+            "color": "#3F51B5",
+            "id": "alpha",
+            "image": "resources/empty.png",
+            "source": "",
+            "text": "Story Alpha",
+            "content": "<h2>Content</h2>"
+        },
+        {
+            "title": "Story Eta",
+            "color": "#00695C",
+            "id": "eta",
+            "image": "resources/empty.png",
+            "source": "",
+            "text": "Story Eta",
+            "content": "<h2>Content</h2>"
+        },
+        {
+            "title": "Story Zeta",
+            "color": "#827717",
+            "id": "zeta",
+            "image": "resources/empty.png",
+            "source": "",
+            "text": "Story Zeta",
+            "content": "<h2>Content</h2>"
+        },
+        {
+            "title": "Story theta",
+            "color": "#E65100",
+            "id": "theta",
+            "image": "resources/empty.png",
+            "source": "",
+            "text": "Story Theta",
+            "content": "<h2>Content</h2>"
+        },
+        {
+            "title": "Story Iota",
+            "color": "#1B5E20",
+            "id": "iota",
+            "image": "resources/empty.png",
+            "source": "",
+            "text": "Story Iota",
+            "content": "<h2>Content</h2>"
+        }
+    ];
 
-    // Fix Viewport Height caused by the keyboard
-    let viewheight = $(window).height();
-    let viewwidth = $(window).width();
-    let viewport = document.querySelector("meta[name=viewport]");
-    viewport.setAttribute("content", "height=" + viewheight + "px, width=" + viewwidth + "px, initial-scale=1.0");
+    // Search Engine
+    var options = {
+        shouldSort: true,
+        threshold: 0.5,
+        location: 0,
+        distance: 100,
+        maxPatternLength: 32,
+        minMatchCharLength: 1,
+        keys: [
+            "title"
+        ]
+    };
+    var fuse = new Fuse(appDataList, options); // "list" is the item array
 
     //Date
     var today = new Date();
@@ -136,15 +225,15 @@ $(document).ready(function () {
     }
 
     lockOptionsButton.click(function () {
-        lockOptionsButton.fadeTo("fast", 0,()=> lockOptionsButton.hide());
+        lockOptionsButton.fadeTo("fast", 0, () => lockOptionsButton.hide());
         lockOptions.addClass("active");
         lockOptions.fadeTo("fast", 1);
 
     });
 
     closeLockOptions.click(function () {
-        lockOptionsButton.fadeTo("fast", 1,()=> lockOptionsButton.show());
-        lockOptions.fadeTo("fast", 0,()=>lockOptions.removeClass("active"));
+        lockOptionsButton.fadeTo("fast", 1, () => lockOptionsButton.show());
+        lockOptions.fadeTo("fast", 0, () => lockOptions.removeClass("active"));
     });
 
     guestButton.click(function () {
@@ -256,13 +345,36 @@ $(document).ready(function () {
         searchInput.addClass("active");
     }
 
-    card.click(function (e) {
+    function updateHomeCards(apps) {
+        homeCards.empty();
+        for (var i = 0; i < apps.length; i++) {
+            homeCards.append('<div class="card" id="' + apps[i].id + '">' +
+                '<img class="card_image" src="' + apps[i].image + '">' +
+                '<div class="card-content">' +
+                '<h6 class="card_header">' + apps[i].source + '</h6>' +
+                '<h5 class="card_text">' + apps[i].text + '</h5>' +
+                '</div>' +
+                '</div>');
+        }
+    }
+
+    searchInput.keyup(function () {
+        var query = searchInput.val();
+        var result = fuse.search(query);
+        console.log("Search Result:", result);
+        if (result.length == 0 || query.length == 0) {
+            result = appDataList.slice(0, 3);
+        }
+        updateHomeCards(result);
+    });
+
+    homeCards.on("click", ".card", function (e) {
         console.log("Click Card: ", e.currentTarget.id);
         var cardId = e.currentTarget.id;
         openedAppObj = new App(cardId);
     });
 
-    $("#app_history").on("click", ".app_container" , function (e) {
+    $("#app_history").on("click", ".app_container", function (e) {
         console.log("Click Card: ", e.currentTarget.id);
         var cardId = e.currentTarget.id;
         openedAppObj = new App(cardId);
@@ -378,32 +490,32 @@ $(document).ready(function () {
             "color": "#689df6",
             "content": "<h2>Content</h2>"
         },
-        "app1": {
-            "title": "App1",
+        "alpha": {
+            "title": "Alpha",
             "color": "#3F51B5",
             "content": "<h2>Content</h2>"
         },
-        "app2": {
-            "title": "App2",
+        "eta": {
+            "title": "Story Eta",
             "color": "#00695C",
             "content": "<h2>Content</h2>"
         },
-        "app3": {
-            "title": "App3",
+        "zeta": {
+            "title": "Story Zeta",
             "color": "#827717",
             "content": "<h2>Content</h2>"
-        }, "app4": {
-            "title": "App4",
+        },
+        "theta": {
+            "title": "Story theta",
             "color": "#E65100",
             "content": "<h2>Content</h2>"
         },
-        "app5": {
-            "title": "App5",
+        "iota": {
+            "title": "Story Iota",
             "color": "#1B5E20",
             "content": "<h2>Content</h2>"
         }
-    }
-
+    };
 
     class OpenApps {
         constructor() {
@@ -450,7 +562,7 @@ $(document).ready(function () {
             for (var i = 0; i < this.openAppsSize(); i++) {
                 var app = this.getApp(i)[0];
                 var id = this.getApp(i)[1];
-                var card = '<div class="history_card" style="border-top: 5px solid '+app.color+'"></div>';
+                var card = '<div class="history_card" style="border-top: 5px solid ' + app.color + '"></div>';
                 if (this.openAppsSize() - i < 3) {
                     bigCards.append('<div class="app_container" id="' + id + '">' + card +
                         '<h6>' + app.title + '</h6>' +
@@ -499,5 +611,6 @@ $(document).ready(function () {
     }
 
     var appHistoryList = new OpenApps();
+    updateHomeCards(appDataList.slice(0, 3));
 
 })
