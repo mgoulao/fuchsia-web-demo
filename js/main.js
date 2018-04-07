@@ -88,7 +88,7 @@ $(document).ready(function () {
     let viewport = document.querySelector("meta[name=viewport]");
     viewport.setAttribute("content", "height=" + viewheight + "px, width=" + viewwidth + "px, initial-scale=1.0");
 
-    //Date 
+    //Date
     var today = new Date();
     var day = today.getDay();
     var date = today.getDate();
@@ -101,6 +101,7 @@ $(document).ready(function () {
         var m = today.getMinutes();
         if (m < 10) { m = "0" + m };
 
+        navbarTime.text(h + ":" + m);
         statusTime.text(h + ":" + m);
         lockHour.text(h + ":" + m);
         setTimeout(updateTime, 30000);
@@ -476,6 +477,3 @@ $(document).ready(function () {
     }
 
 })
-
-
-
