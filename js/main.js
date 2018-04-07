@@ -66,21 +66,31 @@ $(document).ready(function () {
     var openedApp = $("#opened_app");
     var openedAppContent = $("#app_content");
     var openedAppHeader = $("#opened_app header");
+    var bigCards = $(".big_cards");
+    var smallCards = $(".small_cards");
     var openedAppObj;
     //Draggable
     var slideHeight = $('body').height() * 0.5;
     var homeMin = 0;
     var homeMax = -slideHeight;
-    var appHistoryslideHeight = -appHistory.height() * 0.75;
-    if ($("body").width() < 800) {
-        appHistoryslideHeight = -appHistory.height() * 0.85;
-        appHistory.css({ "top": appHistoryslideHeight });
-    } else {
-        appHistory.css({ "top": appHistoryslideHeight });
+    var appHistoryslideHeight;
+    var appHistoryMin;
+    var appHistoryMax;
+    function setAppHistoryTop() {
+        appHistoryslideHeight = -appHistory.height() + 180;
+        console.log("appHistoryslideHeight", appHistoryslideHeight);
+        console.log("App history", appHistory.height());
+        if ($("body").width() < 800) {
+            appHistoryslideHeight = -appHistory.height() +130;
+            appHistory.css({ "top": appHistoryslideHeight });
+        } else {
+            appHistory.css({ "top": appHistoryslideHeight });
+        }
+        appHistoryMin = 0;
+        appHistoryMax = appHistoryslideHeight;
     }
-    var appHistoryMin = 0;
-    console.log("Max App", appHistory.height());
-    var appHistoryMax = appHistoryslideHeight;
+    setAppHistoryTop();
+
 
     // Fix Viewport Height caused by the keyboard
     let viewheight = $(window).height();
@@ -245,7 +255,6 @@ $(document).ready(function () {
 
     card.click(function (e) {
         console.log("Click Card: ", e.currentTarget.id);
-        console.log("TARGET:", e);
         var cardId = e.currentTarget.id;
         openedAppObj = new App(cardId);
     });
@@ -310,20 +319,20 @@ $(document).ready(function () {
             if (ui.position.top < appHistoryMax) ui.position.top = appHistoryMax;
         },
         stop: function (event, ui) {
-            if (ui.position.top < appHistoryslideHeight + 220) {
+            if (ui.position.top < appHistoryslideHeight + 200) {
                 home.css({ "z-index": 1 });
                 home.css({ "opacity": 1 });
                 statusBar.css({ "opacity": 1 });
                 navbar.hide();
 
-                var topPositionRounded = (ui.position.top).roundTo(-appHistoryslideHeight);
                 $(this).animate({
-                    'top': topPositionRounded
+                    'top': appHistoryMax
                 });
             }
         }
 
     });
+
 
     navigator.getBattery().then(function (battery) {
         function updateAllBatteryInfo() {
@@ -421,34 +430,72 @@ $(document).ready(function () {
         }
     }
 
-    /*
+
     class OpenApps {
         constructor() {
-            this.appList = {};
+            this.appList = [];
             this.numberOfApps = 0;
         }
 
         addApp(app) {
             if (app instanceof App) {
-                this.appList[this.numberOfApps++] = {
-                    "app": app,
-                    "title": app.title
-                };
+                this.refreshList(app);
+                this.appList.push(app.id);
+                console.log("App list", this.appList);
+                this.updateUI();
             }
         }
-        refreshList() {
-            for (var i = 0; i < this.appList.length; i++) {
-                if (i < 2) {
-                    $(".big_cards").append('<div class="history_card"></div>' +
-                        '<h6>App1</h6>');
+
+        removeApp(index) {
+            this.appList.splice(index, 1);
+        }
+
+        openAppsSize() {
+            return this.appList.length;
+        }
+
+        getApp(index) {
+            var id = this.appList[index]
+            return appData[id];
+        }
+
+        refreshList(app) {
+            var appId = app.id;
+            for (var i = 0; i < this.openAppsSize(); i++) {
+                if (this.appList[i] == appId) {
+                    this.removeApp(i);
+                    break;
                 }
             }
         }
-    }*/
+
+        updateUI() {
+            console.log("Open Apps size:", this.openAppsSize());
+            bigCards.empty();
+            smallCards.empty();
+
+            for (var i = 0; i < this.openAppsSize(); i++) {
+                var app = this.getApp(i);
+                var card = '<div class="history_card" style="border-top: 5px solid '+app.color+'"></div>';
+                if (this.openAppsSize() - i < 3) {
+                    bigCards.append('<div class="app_container" id="' + app.id + '">' + card +
+                        '<h6>' + app.title + '</h6>' +
+                        '</div>');
+                } else {
+                    smallCards.append('<div class="app_container" id="' + app.id + '">' + card +
+                        '<h6>' + app.title + '</h6>' +
+                        '</div>');
+                }
+            }
+            setAppHistoryTop();
+
+        }
+    }
 
     class App {
         constructor(id) {
             this.title = appData[id].title;
+            this.id = id;
             this.color = appData[id].color;
             this.content = appData[id].content;
             this.open();
@@ -463,6 +510,8 @@ $(document).ready(function () {
             openedAppHeader.css({ "background": this.color });
             openedAppContent.html(this.content);
             openedApp.addClass("active");
+
+            appHistoryList.addApp(this);
         }
         close() {
             console.log("Close App");
@@ -474,6 +523,8 @@ $(document).ready(function () {
             openedApp.removeClass("active");
         }
     }
+
+    var appHistoryList = new OpenApps();
 
 })
 
