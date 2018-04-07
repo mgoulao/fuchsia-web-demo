@@ -128,13 +128,15 @@ $(document).ready(function () {
     }
 
     lockOptionsButton.click(function () {
-        lockOptionsButton.hide();
+        lockOptionsButton.fadeTo("fast", 0,()=> lockOptionsButton.hide());
         lockOptions.addClass("active");
+        lockOptions.fadeTo("fast", 1);
+
     });
 
     closeLockOptions.click(function () {
-        lockOptions.removeClass("active");
-        lockOptionsButton.show();
+        lockOptionsButton.fadeTo("fast", 1,()=> lockOptionsButton.show());
+        lockOptions.fadeTo("fast", 0,()=>lockOptions.removeClass("active"));
     });
 
     guestButton.click(function () {
@@ -145,7 +147,9 @@ $(document).ready(function () {
             lockScreen.hide();
             lockHour.show();
             lockOptionsButton.show();
+            lockOptionsButton.css('opacity', '1');
             lockOptions.removeClass("active");
+            lockOptions.css('opacity', '0');
         }, 2000);
 
     });

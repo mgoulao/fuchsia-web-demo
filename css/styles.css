@@ -227,6 +227,7 @@ button {
     background: transparent;
     bottom: 16px;
     right: 16px;
+    opacity: 0;
 }
 
 .lock_options.active {
