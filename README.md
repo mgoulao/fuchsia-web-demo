@@ -15,6 +15,7 @@ The Fuchsia Web Demo tries to simulate the UI and animations of Fuchsia OS. So a
 
 * [jQuery](https://jquery.com/) - The JavaScript library used
 * [jQuery UI](https://jqueryui.com/)
+* [Fuse.js](http://fusejs.io/) - Search library
 
 ## Authors
 
