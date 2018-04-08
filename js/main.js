@@ -129,6 +129,7 @@ $(document).ready(function () {
     var homeButton = $("#home_button");
     var homeCards = $(".home_cards");
     var menu = $("#menu");
+    var menuButton = $("#menu_2 button");
     var statusMenu = $("#menu_2");
     var home = $("#home");
     var appHistory = $("#app_history");
@@ -299,6 +300,16 @@ $(document).ready(function () {
 
     statusMenu.click(function () {
         event.stopPropagation();
+    });
+
+    menuButton.click(function (e) {
+        var buttonId = e.currentTarget.id;
+        var jqueryBtn = $("#"+buttonId);
+        if(jqueryBtn.hasClass("active")) {
+            jqueryBtn.removeClass("active");
+        } else {
+            jqueryBtn.addClass("active");
+        }
     });
 
     signOutButton.click(function () {
