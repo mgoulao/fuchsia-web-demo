@@ -11,6 +11,7 @@
     --small-cards-rows: 205px;
     --big-cards-rows: 215px;
     --menu-quick-settings-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    --menu-active-height: 360px;
 }
 
 * {
@@ -461,9 +462,9 @@ button {
 
 #menu_2.active {
     border-radius: 12px;
-    bottom: 50px;
+    bottom: 100px;
     width: var(--status-bar-width);
-    height: 450px;
+    height: var(--menu-active-height);
     transition: all 0.5s ease;
 }
 
@@ -482,6 +483,25 @@ button {
 
 #menu_2 .status_date {
     padding: 12px 0;
+}
+
+.menu_bottom_options {
+    width: 100%;
+    padding: 0 24px;
+    margin-top: 16px;
+}
+
+.menu_more_options {
+    float: right;
+}
+
+.menu_bottom_options i {
+    color: #424242
+}
+
+.menu_bottom_options .text_round_button {
+    padding: 5px 16px;
+    font-size: 12px;
 }
 
 .menu.active {
@@ -804,6 +824,7 @@ button {
         --small-cards-rows: 150px;
         --big-cards-rows: 150px;
         --menu-quick-settings-columns: 1fr 1fr 1fr;
+        --menu-active-height: 450px;
     }
     #app_history {
         margin: 0 auto;
