@@ -6,6 +6,83 @@ let viewwidth = $(window).width();
 let viewport = document.querySelector("meta[name=viewport]");
 viewport.setAttribute("content", "height=" + viewheight + "px, width=" + viewwidth + "px, initial-scale=1.0");
 
+var appData = {
+    "inbox": {
+        "title": "Inbox",
+        "color": "#4285f4",
+        "id": "inbox",
+        "image": "resources/ginbox_icon.png",
+        "source": "Inbox",
+        "text": "You received a new email",
+        "content": "<h2>Content</h2>"
+    },
+    "recipes": {
+        "title": "Recipes",
+        "color": "#455A64",
+        "id": "recipes",
+        "image": "resources/recipes.jpg",
+        "source": "Google",
+        "text": "See recipes for you",
+        "content": "<h2>Content</h2>"
+    },
+    "maps": {
+        "title": "Maps",
+        "color": "#689df6",
+        "id": "maps",
+        "image": "resources/ist.png",
+        "source": "Maps",
+        "text": "45 min drive to Work",
+        "content": "<h2>Content</h2>"
+    },
+    "alpha": {
+        "title": "Alpha",
+        "color": "#3F51B5",
+        "id": "alpha",
+        "image": "resources/empty.png",
+        "source": "",
+        "text": "Story Alpha",
+        "content": "<h2>Content</h2>"
+    },
+    "eta": {
+        "title": "Story Eta",
+        "color": "#00695C",
+        "id": "eta",
+        "image": "resources/empty.png",
+        "source": "",
+        "text": "Story Eta",
+        "content": "<h2>Content</h2>"
+    },
+    "zeta": {
+        "title": "Story Zeta",
+        "color": "#827717",
+        "id": "zeta",
+        "image": "resources/empty.png",
+        "source": "",
+        "text": "Story Zeta",
+        "content": "<h2>Content</h2>"
+    },
+    "theta": {
+        "title": "Story theta",
+        "color": "#E65100",
+        "id": "theta",
+        "image": "resources/empty.png",
+        "source": "",
+        "text": "Story Theta",
+        "content": "<h2>Content</h2>"
+    },
+    "iota": {
+        "title": "Story Iota",
+        "color": "#1B5E20",
+        "id": "iota",
+        "image": "resources/empty.png",
+        "source": "",
+        "text": "Story Iota",
+        "content": "<h2>Content</h2>"
+    }
+};
+
+// Helper functions
+
 function getMonth(m) {
     switch (m) {
         case 1: m = "JAN";
@@ -39,6 +116,11 @@ function getMonth(m) {
 function getWeekDay(d) {
     var days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
     return days[d];
+}
+
+Number.prototype.roundTo = function (nTo) {
+    nTo = nTo || 10;
+    return Math.round(this * (1 / nTo)) * nTo;
 }
 
 $(document).ready(function () {
@@ -76,13 +158,15 @@ $(document).ready(function () {
     var bigCards = $(".big_cards");
     var smallCards = $(".small_cards");
     var openedAppObj;
-    //Draggable
+
+    // Define Draggable Limits
     var slideHeight = $('body').height() * 0.5;
     var homeMin = 0;
     var homeMax = -slideHeight;
     var appHistoryslideHeight;
     var appHistoryMin;
     var appHistoryMax;
+
     function setAppHistoryTop() {
         appHistoryslideHeight = -appHistory.height() + 180;
         if ($("body").width() < 800) {
@@ -96,81 +180,6 @@ $(document).ready(function () {
     }
     setAppHistoryTop();
 
-    var appDataList = [
-        {
-            "title": "Inbox",
-            "color": "#4285f4",
-            "id": "inbox",
-            "image": "resources/ginbox_icon.png",
-            "source": "Inbox",
-            "text": "You received a new email",
-            "content": "<h2>Content</h2>"
-        },
-        {
-            "title": "Recipes",
-            "color": "#455A64",
-            "id": "recipes",
-            "image": "resources/recipes.jpg",
-            "source": "Google",
-            "text": "See recipes for you",
-            "content": "<h2>Content</h2>"
-        },
-        {
-            "title": "Maps",
-            "color": "#689df6",
-            "id": "maps",
-            "image": "resources/ist.png",
-            "source": "Maps",
-            "text": "45 min drive to Work",
-            "content": "<h2>Content</h2>"
-        },
-        {
-            "title": "Alpha",
-            "color": "#3F51B5",
-            "id": "alpha",
-            "image": "resources/empty.png",
-            "source": "",
-            "text": "Story Alpha",
-            "content": "<h2>Content</h2>"
-        },
-        {
-            "title": "Story Eta",
-            "color": "#00695C",
-            "id": "eta",
-            "image": "resources/empty.png",
-            "source": "",
-            "text": "Story Eta",
-            "content": "<h2>Content</h2>"
-        },
-        {
-            "title": "Story Zeta",
-            "color": "#827717",
-            "id": "zeta",
-            "image": "resources/empty.png",
-            "source": "",
-            "text": "Story Zeta",
-            "content": "<h2>Content</h2>"
-        },
-        {
-            "title": "Story theta",
-            "color": "#E65100",
-            "id": "theta",
-            "image": "resources/empty.png",
-            "source": "",
-            "text": "Story Theta",
-            "content": "<h2>Content</h2>"
-        },
-        {
-            "title": "Story Iota",
-            "color": "#1B5E20",
-            "id": "iota",
-            "image": "resources/empty.png",
-            "source": "",
-            "text": "Story Iota",
-            "content": "<h2>Content</h2>"
-        }
-    ];
-
     // Search Engine
     var options = {
         shouldSort: true,
@@ -183,7 +192,14 @@ $(document).ready(function () {
             "title"
         ]
     };
-    var fuse = new Fuse(appDataList, options); // "list" is the item array
+
+    // Change appData format to the used on Fuse.js
+    var appDataList = [];
+    for(var app in appData) {
+        appDataList.push(appData[app]);
+    }
+
+    var fuse = new Fuse(appDataList, options);
 
     //Date
     var today = new Date();
@@ -191,6 +207,7 @@ $(document).ready(function () {
     var date = today.getDate();
     var month = today.getMonth();
     statusDay.text(getWeekDay(day) + ", " + getMonth(month) + " " + date);
+
     //Time
     function updateTime() {
         today = new Date();
@@ -205,6 +222,8 @@ $(document).ready(function () {
     }
     updateTime();
 
+    // Listeners
+
     $(document).click(function () {
         if (statusMenu.hasClass("active")) {
             statusMenu.removeClass("active");
@@ -215,14 +234,12 @@ $(document).ready(function () {
         }
     });
 
-    googleSearch.click(activateGoogleSearch);
-
-    function activateGoogleSearch() {
+    googleSearch.click(function () {
         home.css({ "top": homeMax + "px" });
         appHistory.css({ "transform": "translateY(" + homeMax + "px)" });
         showSearchInput();
         searchInput.focus();
-    }
+    });
 
     lockOptionsButton.click(function () {
         lockOptionsButton.fadeTo("fast", 0, () => lockOptionsButton.hide());
@@ -241,7 +258,7 @@ $(document).ready(function () {
         loginLoader.show();
         setTimeout(function () {
             loginLoader.hide();
-            lockScreen.fadeTo("fast", 0,()=> {
+            lockScreen.fadeTo("fast", 0, () => {
                 lockScreen.hide();
                 lockHour.show();
                 lockOptionsButton.show();
@@ -299,6 +316,28 @@ $(document).ready(function () {
         showAppHistory();
         menu.removeClass("active");
         showStatusBar();
+    });
+
+    searchInput.keyup(function () {
+        var query = searchInput.val();
+        var result = fuse.search(query);
+        console.log("Search Result:", result);
+        if (result.length == 0 || query.length == 0) {
+            result = appDataList.slice(0, 3);
+        }
+        updateHomeCards(result);
+    });
+
+    homeCards.on("click", ".card", function (e) {
+        console.log("Click Card: ", e.currentTarget.id);
+        var cardId = e.currentTarget.id;
+        openedAppObj = new App(cardId);
+    });
+
+    appHistory.on("click", ".app_container", function (e) {
+        console.log("Click Card: ", e.currentTarget.id);
+        var cardId = e.currentTarget.id;
+        openedAppObj = new App(cardId);
     });
 
     function hideHome() {
@@ -359,33 +398,6 @@ $(document).ready(function () {
                 '</div>' +
                 '</div>');
         }
-    }
-
-    searchInput.keyup(function () {
-        var query = searchInput.val();
-        var result = fuse.search(query);
-        console.log("Search Result:", result);
-        if (result.length == 0 || query.length == 0) {
-            result = appDataList.slice(0, 3);
-        }
-        updateHomeCards(result);
-    });
-
-    homeCards.on("click", ".card", function (e) {
-        console.log("Click Card: ", e.currentTarget.id);
-        var cardId = e.currentTarget.id;
-        openedAppObj = new App(cardId);
-    });
-
-    $("#app_history").on("click", ".app_container", function (e) {
-        console.log("Click Card: ", e.currentTarget.id);
-        var cardId = e.currentTarget.id;
-        openedAppObj = new App(cardId);
-    });
-
-    Number.prototype.roundTo = function (nTo) {
-        nTo = nTo || 10;
-        return Math.round(this * (1 / nTo)) * nTo;
     }
 
     //Home Drag
@@ -451,7 +463,7 @@ $(document).ready(function () {
 
     });
 
-
+    // Show Computers Battery info
     navigator.getBattery().then(function (battery) {
         function updateAllBatteryInfo() {
             updateChargeLevel();
@@ -477,87 +489,55 @@ $(document).ready(function () {
 
     });
 
-    var appData = {
-        "inbox": {
-            "title": "Inbox",
-            "color": "#4285f4",
-            "content": "<h2>Content</h2>"
-        },
-        "recipes": {
-            "title": "Recipes",
-            "color": "#455A64",
-            "content": "<h2>Content</h2>"
-        },
-        "maps": {
-            "title": "Maps",
-            "color": "#689df6",
-            "content": "<h2>Content</h2>"
-        },
-        "alpha": {
-            "title": "Alpha",
-            "color": "#3F51B5",
-            "content": "<h2>Content</h2>"
-        },
-        "eta": {
-            "title": "Story Eta",
-            "color": "#00695C",
-            "content": "<h2>Content</h2>"
-        },
-        "zeta": {
-            "title": "Story Zeta",
-            "color": "#827717",
-            "content": "<h2>Content</h2>"
-        },
-        "theta": {
-            "title": "Story theta",
-            "color": "#E65100",
-            "content": "<h2>Content</h2>"
-        },
-        "iota": {
-            "title": "Story Iota",
-            "color": "#1B5E20",
-            "content": "<h2>Content</h2>"
-        }
-    };
+    // Classes
 
+    /* Class representing a group of open Apps */
     class OpenApps {
         constructor() {
-            this.appList = [];
+            this.appArray = [];
             this.numberOfApps = 0;
         }
 
         addApp(app) {
             if (app instanceof App) {
                 this.refreshList(app);
-                this.appList.push(app.id);
-                console.log("App list", this.appList);
+                
+                console.log("App list", this.appArray);
                 this.updateUI();
             }
         }
 
         removeApp(index) {
-            this.appList.splice(index, 1);
+            this.appArray.splice(index, 1);
         }
 
         openAppsSize() {
-            return this.appList.length;
+            return this.appArray.length;
         }
 
         getApp(index) {
-            var id = this.appList[index]
+            var id = this.appArray[index]
             return [appData[id], id];
         }
 
+        /**
+         * Moves a given app to the last position 
+         * @param {App} app
+        */
         refreshList(app) {
             var appId = app.id;
             for (var i = 0; i < this.openAppsSize(); i++) {
-                if (this.appList[i] == appId) {
+                if (this.getApp(i)[1] == appId) {
                     this.removeApp(i);
                     break;
                 }
             }
+            this.appArray.push(app.id);
         }
 
+        /**
+         * Updates cards containers
+        */
         updateUI() {
             bigCards.empty();
             smallCards.empty();
@@ -581,6 +561,7 @@ $(document).ready(function () {
         }
     }
 
+    /* Class represents an App */
     class App {
         constructor(id) {
             this.title = appData[id].title;
