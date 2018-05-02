@@ -25,5 +25,5 @@ See also the list of [contributors](https://github.com/mgoulao/fuchsia-web-demo/
 
 ## Acknowledgments
 
-Fuchsia Web Demo usesthe following open source software:
+Fuchsia Web Demo uses the following open source software:
 * [jQuery UI Touch Punch Fork 0.4.0](https://github.com/ivanmoralesv/jquery-ui-touch-punch)
