@@ -226,8 +226,8 @@ $(document).ready(function () {
     // Listeners
 
     $(document).click(function () {
-        if (statusMenu.hasClass("active")) {
-            statusMenu.removeClass("active");
+        if (statusUserImage.hasClass("active")) {
+            statusUserImage.removeClass("active");
             showHome();
             showAppHistory();
         } else if (menu.hasClass("active")) {
@@ -287,12 +287,12 @@ $(document).ready(function () {
 
     statusUserImage.click(function () {
 
-        if (statusMenu.hasClass("active")) {
-            statusMenu.removeClass("active");
+        if (statusUserImage.hasClass("active")) {
+            statusUserImage.removeClass("active");
             showHome();
             showAppHistory();
         } else {
-            statusMenu.addClass("active");
+            statusUserImage.addClass("active");
             hideHome();
             hideAppHistory();
         }

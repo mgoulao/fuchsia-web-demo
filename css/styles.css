@@ -4,6 +4,7 @@
     --lockscreen-h3-font-size: 100px;
     --status-bar-width: 720px;
     --status-bar-grid-columns: 335px 50px 335px;
+    --menu-status-bar-grid-columns: 1fr 1fr;
     --home-width: 800px;
     --home-cards-grid-column: 50% 50%;
     --app-history-width: 800px;
@@ -162,7 +163,7 @@ body {
 
 #lockscreen {
     position: absolute;
-    display: none;
+    display: block;
     width: 100%;
     height: 100%;
     z-index: 100;
@@ -268,6 +269,16 @@ button {
     z-index: 1;
 }
 
+.menu_status_bar {
+    width: 100%;
+    color: #616161;
+    display: grid;
+    grid-template-columns: var(--menu-status-bar-grid-columns);
+    cursor: default;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+}
+
 .status_date {
     height: 100%;
     display: flex;
@@ -291,7 +302,7 @@ button {
     align-self: center;
     display: flex;
     align-items: flex-end;
-    margin: auto auto auto 8px;
+    margin: auto 16px auto auto;
 }
 
 .status div {
@@ -306,11 +317,24 @@ button {
 .fuchsia img {
     width: 50px;
     height: 50px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
     background: #fff;
     border-radius: 50%;
+    margin: auto;
     padding: 2px;
     object-fit: cover;
     cursor: pointer;
+    transition: all 0.5s ease;
+    z-index: 100;
+}
+
+.fuchsia.active img {
+    width: 60px;
+    height: 60px;
+    bottom: 235px;
 }
 
 .main {
@@ -342,6 +366,23 @@ button {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
+}
+
+.menu_image_container {
+    position: absolute;
+    display: block;
+    width: auto;
+    height: auto;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 99;
+    transition: all 0.4s ease;
+}
+
+.fuchsia.active .menu_image_container {
+    top: -150px;
 }
 
 .menu {
@@ -376,17 +417,19 @@ button {
 }
 
 #menu_2 {
+    position: relative;
     width: 0;
     height: 0;
     border-radius: 50%;
     display: block;
     left: 0;
     right: 0;
-    bottom: 50vh;
+    bottom: 0;
     margin: auto;
+    margin-top: -30px;
     overflow: hidden;
-    transition: all 0.5s ease;
-    z-index: 99;
+    transition: all 0.4s ease;
+    z-index: -1;
     background: #fff;
 }
 
@@ -418,7 +461,6 @@ button {
     display: grid;
     grid-template-columns: var(--menu-quick-settings-columns);
     grid-row-gap: 20px;
-    margin-top: 35px;
 }
 
 #menu_2 .menu_quick_option {
@@ -429,7 +471,8 @@ button {
 #menu_2 .option_title {
     width: 100%;
     margin: 0;
-    padding: 0;
+    padding: 8px 0;
+    color: #212121;
 }
 
 #menu_2 .menu_quick_settings button, #menu_2 .menu_option button {
@@ -450,22 +493,18 @@ button {
     box-shadow: none;
 }
 
-
-
 #menu_2 .menu_quick_settings button i, #menu_2 .menu_option button i {
-    color:#424242;
+    color: #424242;
 }
 
 #menu_2 .menu_quick_settings button.active i, #menu_2 .menu_option button.active i {
     color: #fff;
 }
 
-#menu_2.active {
+.fuchsia.active #menu_2 {
     border-radius: 12px;
-    bottom: 100px;
     width: var(--status-bar-width);
     height: var(--menu-active-height);
-    transition: all 0.5s ease;
 }
 
 #menu_2 .status_bar {
@@ -525,8 +564,6 @@ button {
     padding-left: 16px;
     align-self: center;
 }
-
-
 
 .menu_option:hover {
     background: #eee;
@@ -624,7 +661,7 @@ button {
 
 .apps_overflow {
     height: 82%;
-    overflow: scroll;
+    overflow: auto;
 }
 
 .home_cards {
