@@ -428,7 +428,8 @@ button {
 #menu_2 {
     position: relative;
     width: 0;
-    height: 0;
+    height: var(--menu-active-height);
+    max-height: 0;
     border-radius: 50%;
     display: block;
     left: 0;
@@ -522,7 +523,7 @@ button {
 .fuchsia.active #menu_2 {
     border-radius: 12px;
     width: var(--status-bar-width);
-    height: var(--menu-active-height);
+    max-height: 600px;
 }
 
 #menu_2 .status_bar {
@@ -906,6 +907,9 @@ button {
     .menu_option .mdl-slider__container {
         margin: 0;
     }
+    .fuchsia.active .menu_image_container {
+        top: -205px;
+    }
 }
 
 @media screen and (max-width: 650px) {
@@ -916,9 +920,6 @@ button {
         margin: 0 0 0 10px;
         font-size: 18px;
         font-weight: 600;
-    }
-    .fuchsia.active .menu_image_container {
-        top: -205px;
     }
 }
 
