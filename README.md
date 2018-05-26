@@ -13,6 +13,7 @@ The Fuchsia Web Demo tries to simulate the UI and animations of Fuchsia OS. So a
 
 ## Built With
 
+* [MDC](https://github.com/material-components/material-components-web) - UI components
 * [jQuery](https://jquery.com/) - The JavaScript library used
 * [jQuery UI](https://jqueryui.com/)
 * [Fuse.js](http://fusejs.io/) - Search library
@@ -22,8 +23,3 @@ The Fuchsia Web Demo tries to simulate the UI and animations of Fuchsia OS. So a
 * **Manuel Goulão** - [mgoulao](https://github.com/mgoulao)
 
 See also the list of [contributors](https://github.com/mgoulao/fuchsia-web-demo/contributors) who participated in this project.
-
-## Acknowledgments
-
-Fuchsia Web Demo uses the following open source software:
-* [jQuery UI Touch Punch Fork 0.4.0](https://github.com/ivanmoralesv/jquery-ui-touch-punch)
