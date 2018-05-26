@@ -261,7 +261,7 @@ $(document).ready(function () {
         }
     });
 
-    googleSearch.click(function () {
+    dummyInput.click(function () {
         home.css({ "top": homeMax + "px" });
         appHistory.css({ "transform": "translateY(" + homeMax + "px)" });
         showSearchInput();
@@ -455,6 +455,7 @@ $(document).ready(function () {
     home.draggable({
         axis: "y",
         scroll: false,
+        handle: '.google_search',
         position: 'unset',
         drag: function (event, ui) {
             if (ui.position.top < 0) {
