@@ -523,7 +523,7 @@ button {
 .fuchsia.active #menu_2 {
     border-radius: 12px;
     width: var(--status-bar-width);
-    max-height: 600px;
+    max-height: 440px;
 }
 
 #menu_2 .status_bar {
