@@ -15,7 +15,6 @@
     <link rel="shortcut icon" type="image/png" href="resources/favicon.png" />
     <title>Fuchsia</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <!--<link rel="stylesheet" href="css/mdc.min.css">-->
     <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
@@ -231,167 +230,6 @@
         </div>
     </div>
 
-    <!--<div class="menu" id="menu_2">
-        <div class="status_bar">
-            <div class="status_date">
-                <span class="status_hour">00:00</span>
-                <div>
-                    <h6 class="status_day">SUNDAY, january 1</h6>
-                    <h6 class="status_location">in Your Location</h6>
-                </div>
-            </div>
-            <div class="fuchsia">
-                <img src="http://web.tecnico.ulisboa.pt/ist191049/resources/profile.jpg">
-
-            </div>
-            <div class="status">
-                <div>
-                    <span>GoogleWifi</span>
-                    <i class="material-icons">network_wifi</i>
-                </div>
-                <div>
-                    <span class="battery_level">0%</span>
-                    <i class="battery_icon material-icons">battery_full</i>
-                </div>
-            </div>
-        </div>
-
-        <div class="menu_option menu_key_board">
-            <i class="material-icons">keyboard</i>
-            <span class="option_title">US keyboard</span>
-            <i class="material-icons">chevron_right</i>
-        </div>
-        <div class="menu_option menu_wifi">
-            <i class="material-icons">wifi_lock</i>
-            <span class="option_title">Network</span>
-            <i class="material-icons">chevron_right</i>
-        </div>
-        <div class="menu_option menu_bluetooth">
-            <i class="material-icons">bluetooth</i>
-            <span class="option_title">Bluetooth</span>
-            <i class="material-icons">chevron_right</i>
-        </div>
-        <div class="menu_option menu_cast">
-            <i class="material-icons">cast</i>
-            <span class="option_title">Cast</span>
-            <i class="material-icons">chevron_right</i>
-        </div>
-        <div class="menu_option menu_volume">
-            <i class="volume_upicon material-icons">volume_up</i>
-            <span class="option_title">Volume</span>
-            <input class="mdc-slider mdc-js-slider" type="range" min="0" max="100" value="20" tabindex="0">
-        </div>
-        <div class="menu_option menu_screen">
-            <i class="material-icons">settings_brightness</i>
-            <span class="option_title">Brightness</span>
-            <input class="mdc-slider mdc-js-slider" type="range" min="0" max="100" value="40" tabindex="0">
-        </div>
-        <div class="menu_option menu_settings">
-            <i class="material-icons">settings</i>
-            <span class="option_title">Settings</span>
-            <i class="material-icons">chevron_right</i>
-        </div>
-        <div class="menu_option">
-            <button class="signout mdc-button mdc-js-button mdc-js-ripple-effect">
-                Sign out
-            </button>
-        </div>
-    </div>-->
-
-    <!--<div class="menu" id="menu_2">
-        <div class="status_bar">
-            <div class="status_date">
-                <span class="status_hour">00:00</span>
-                <div>
-                    <h6 class="status_day">SUNDAY, january 1</h6>
-                    <h6 class="status_location">in Your Location</h6>
-                </div>
-            </div>
-            <div class="fuchsia">
-                <img src="http://web.tecnico.ulisboa.pt/ist191049/resources/profile.jpg">
-
-            </div>
-            <div class="status">
-                <div>
-                    <span>GoogleWifi</span>
-                    <i class="material-icons">network_wifi</i>
-                </div>
-                <div>
-                    <span class="battery_level">0%</span>
-                    <i class="battery_icon material-icons">battery_full</i>
-                </div>
-            </div>
-        </div>
-        <div class="menu_quick_settings">
-            <div class="menu_quick_option">
-                <button class="mdc-button mdc-js-button mdc-button--fab mdc-button--mini-fab active" id="menu_wifi">
-                    <i class="material-icons">wifi_lock</i>
-                </button>
-                <span class="option_title">Wifi</span>
-            </div>
-            <div class="menu_quick_option">
-                <button class="mdc-button mdc-js-button mdc-button--fab mdc-button--mini-fab" id="menu_bluetooth">
-                    <i class="material-icons">bluetooth</i>
-                </button>
-                <span class="option_title">Bluetooth</span>
-            </div>
-            <div class="menu_quick_option">
-                <button class="mdc-button mdc-js-button mdc-button--fab mdc-button--mini-fab active" id="menu_disturb">
-                    <i class="material-icons">do_not_disturb_on</i>
-                </button>
-                <span class="option_title">Do Not Disturb</span>
-            </div>
-            <div class="menu_quick_option">
-                <button class="mdc-button mdc-js-button mdc-button--fab mdc-button--mini-fab" id="menu_location">
-                    <i class="material-icons">location_on</i>
-                </button>
-                <span class="option_title">Location</span>
-            </div>
-            <div class="menu_quick_option">
-                <button class="mdc-button mdc-js-button mdc-button--fab mdc-button--mini-fab" id="menu_airplane">
-                    <i class="material-icons">airplanemode_active</i>
-                </button>
-                <span class="option_title">Airplane Mode</span>
-            </div>
-            <div class="menu_quick_option">
-                <button class="mdc-button mdc-js-button mdc-button--fab mdc-button--mini-fab" id="menu_vpn">
-                    <i class="material-icons">vpn_key</i>
-                </button>
-                <span class="option_title">VPN Key</span>
-            </div>
-        </div>
-        <div class="menu_option">
-            <button class="mdc-button mdc-js-button mdc-button--fab mdc-button--mini-fab active" id="menu_volume">
-                <i class="material-icons">volume_up</i>
-            </button>
-            <input class="mdc-slider mdc-js-slider" type="range" min="0" max="100" value="20" tabindex="0">
-        </div>
-        <div class="menu_option">
-            <button class="mdc-button mdc-js-button mdc-button--fab mdc-button--mini-fab" id="menu_screen">
-                <i class="material-icons">settings_brightness</i>
-            </button>
-            <input class="mdc-slider mdc-js-slider" type="range" min="0" max="100" value="40" tabindex="0">
-        </div>
-        <div class="menu_bottom_options">
-            <button class="mdc-button mdc-js-button mdc-button--icon">
-                <i class="material-icons">cast</i>
-            </button>
-            <div class="menu_more_options">
-                <button class="text_round_button signout">Sign Out</button>
-                <button class="mdc-button mdc-js-button mdc-button--icon">
-                    <i class="material-icons">lock</i>
-                </button>
-                <button class="mdc-button mdc-js-button mdc-button--icon">
-                    <i class="material-icons">settings</i>
-                </button>
-                <button class="mdc-button mdc-js-button mdc-button--icon">
-                    <i class="material-icons">power_settings_new</i>
-                </button>
-            </div>
-        </div>
-    </div>-->
-
-
     <div class="menu" id="menu">
         <div class="menu_option menu_user">
             <img class="user_icon" src="http://web.tecnico.ulisboa.pt/ist191049/resources/profile.jpg">
@@ -492,40 +330,13 @@
     </div>
 
     <div id="app_history" unselectable="on">
-        <div class="small_cards">
-            <!--<div class="app_container" id="app1">
-                <div class="history_card"></div>
-                <h6>Story Theta</h6>
-            </div>
-
-            <div class="app_container" id="app2">
-                <div class="history_card"></div>
-                <h6>Story Iota</h6>
-            </div>
-            <div class="app_container" id="app3">
-                <div class="history_card"></div>
-                <h6>Story Eta</h6>
-            </div>-->
-        </div>
-
-        <div class="big_cards">
-            <!--<div class="app_container" id="app4">
-                <div class="history_card"></div>
-                <h6>Story Zeta</h6>
-            </div>
-            <div class="app_container" id="app5">
-                <div class="history_card"></div>
-                <h6>Story Alpha</h6>
-            </div>-->
-        </div>
-
+        <div class="small_cards"></div>
+        <div class="big_cards"></div>
     </div>
 
-    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClIi_QsVzwnWetSX7GsAy0nL_ivAp54-8&sensor=false"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <!--<script src="js/jquery.ui.touch-punch.min.js"></script>-->
-    <!--<script src="js/material.min.js"></script>-->
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
     <script src="js/fuse.min.js"></script>
     <script src="js/main.js"></script>
