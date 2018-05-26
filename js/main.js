@@ -123,7 +123,28 @@ Number.prototype.roundTo = function (nTo) {
     return Math.round(this * (1 / nTo)) * nTo;
 }
 
+var init = function () {
+    document.addEventListener('touchstart', handler, true);
+    document.addEventListener('touchmove', handler, true);
+    document.addEventListener('touchend', handler, true);
+    document.addEventListener('touchcancel', handler, true);
+};
+
+var handler = function (event) {
+    var touch = event.changedTouches[0],
+        simulatedEvent = document.createEvent('MouseEvent');
+
+    simulatedEvent.initMouseEvent(
+        { touchstart: 'mousedown', touchmove: 'mousemove', touchend: 'mouseup' }[event.type],
+        true, true, window, 1,
+        touch.screenX, touch.screenY, touch.clientX, touch.clientY,
+        false, false, false, false, 0, null);
+
+    touch.target.dispatchEvent(simulatedEvent);
+};
+
 $(document).ready(function () {
+    init();
     var navbarTime = $("#navbar_time");
     var navbar = $(".navbar");
     var homeButton = $("#home_button");
@@ -152,6 +173,7 @@ $(document).ready(function () {
     var googleSearch = $(".google_search");
     var searchInput = $(".search_input");
     var dummyInput = $("#dummy_input");
+    var appsOverflow = $(".apps_overflow");
     var card = $(".card");
     var openedApp = $("#opened_app");
     var openedAppContent = $("#app_content");
@@ -441,7 +463,11 @@ $(document).ready(function () {
             appHistory.css({ "transform": "translateY(" + topPositionRounded + "px)" });
             if (topPositionRounded == 0) {
                 hideSearchInput();
+                appsOverflow.css({ "overflow": "hidden" });
+            } else {
+                appsOverflow.css({ "overflow": "auto" });
             }
+
             $(this).animate({
                 'top': topPositionRounded
             });

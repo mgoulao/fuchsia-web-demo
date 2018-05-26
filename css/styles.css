@@ -688,7 +688,7 @@ button {
 
 .apps_overflow {
     height: 82%;
-    overflow: auto;
+    overflow: hidden;
 }
 
 .home_cards {
