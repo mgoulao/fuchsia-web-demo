@@ -27,8 +27,15 @@
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
 
+html {
+    width: 100%;
+    height: 100%;
+}
+
 body {
     position: relative;
+    width: 100%;
+    min-height: 100%;
     margin: 0;
     background: url("../resources/background-1.jpg") no-repeat fixed center;
     overflow: hidden;
@@ -163,7 +170,7 @@ body {
 
 #lockscreen {
     position: absolute;
-    display: block;
+    display: none;
     width: 100%;
     height: 100%;
     z-index: 100;
@@ -290,12 +297,13 @@ button {
     align-self: center;
 }
 
-.status_date h6 {
+.status_date h4 {
     margin: 0 0 0 12px;
+    line-height: 24px;
 }
 
-.status_day {
-    font-weight: 600;
+.status_location {
+    font-weight: 400;
 }
 
 .status, .status div {
@@ -434,14 +442,10 @@ button {
 }
 
 #menu_2 .menu_option {
-    padding: 16px 40px;
+    padding: 8px 40px;
     width: 80%;
     margin: 0 auto;
-}
-
-#menu_2 i:nth-child(3) {
-    position: absolute;
-    right: 40px;
+    align-items: center;
 }
 
 #menu_2 .menu_option:hover {
@@ -476,6 +480,9 @@ button {
 }
 
 #menu_2 .menu_quick_settings button, #menu_2 .menu_option button {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
     background: #E0E0E0;
     margin: 0 auto;
     box-shadow: none;
@@ -489,15 +496,25 @@ button {
     box-shadow: none;
 }
 
+#menu_2 .menu_quick_settings button.active:hover {
+    background: #1976D2;
+    -webkit-tap-highlight-color: #1976D2;
+    opacity: 1;
+}
+
+.mdc-fab:not(.mdc-ripple-upgraded):focus::before, .mdc-fab.mdc-ripple-upgraded--background-focused::before {
+    opacity: 0.01;
+}
+
 #menu_2 .menu_quick_settings button:active, #menu_2 .menu_option button:active {
     box-shadow: none;
 }
 
-#menu_2 .menu_quick_settings button i, #menu_2 .menu_option button i {
+#menu_2 .menu_quick_settings button .mdc-fab__icon, #menu_2 .menu_option button .mdc-fab__icon {
     color: #424242;
 }
 
-#menu_2 .menu_quick_settings button.active i, #menu_2 .menu_option button.active i {
+#menu_2 .menu_quick_settings button.active .mdc-fab__icon, #menu_2 .menu_option button.active .mdc-fab__icon {
     color: #fff;
 }
 
@@ -528,19 +545,28 @@ button {
     width: 100%;
     padding: 0 24px;
     margin-top: 16px;
+    overflow: hidden;
 }
 
 .menu_more_options {
+    display: flex;
     float: right;
 }
 
 .menu_bottom_options i {
-    color: #424242
+    color: #424242;
+}
+
+#menu_cast {
+    float: left;
 }
 
 .menu_bottom_options .text_round_button {
+    height: 32px;
     padding: 5px 16px;
+    margin-right: 12px;
     font-size: 12px;
+    align-self: center;
 }
 
 .menu.active {
@@ -569,7 +595,7 @@ button {
     background: #eee;
 }
 
-.menu_option .mdl-slider__container {
+.menu_option .mdc-slider {
     align-self: center;
     width: -webkit-fill-available;
     margin: 0 12px;
@@ -639,6 +665,7 @@ button {
     border: none;
     margin-left: 32px;
     display: none;
+    align-self: center;
 }
 
 #dummy_input.active {
@@ -703,7 +730,7 @@ button {
 .card_header {
     width: 100%;
     margin: 0;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 300;
     color: #777777;
 }
@@ -711,6 +738,8 @@ button {
 .card_text {
     margin: 0;
     color: #212121;
+    font-size: 20px;
+    font-weight: 300;
 }
 
 #notify {
@@ -888,6 +917,9 @@ button {
         font-size: 18px;
         font-weight: 600;
     }
+    .fuchsia.active .menu_image_container {
+        top: -205px;
+    }
 }
 
 @media screen and (max-width: 550px) {
@@ -899,7 +931,7 @@ button {
     .status div:first-child {
         display: none;
     }
-    .status_date div h6:nth-child(1) {
+    .status_date div h4:nth-child(1) {
         display: none;
     }
     .status div {
@@ -910,6 +942,15 @@ button {
         padding: 16px 20px;
         width: 98%;
     }
+    .menu_bottom_options {
+        margin-top: 0;
+    }
+    .apps {
+        padding-top: 14px;
+    }
+    .card {
+        margin: 8px auto; 
+    }
 }
 
 @media screen and (max-width: 450px) {
@@ -918,5 +959,8 @@ button {
     }
     .status div {
         right: 4px;
+    }
+    .menu_bottom_options {
+        padding: 0 6px;
     }
 }

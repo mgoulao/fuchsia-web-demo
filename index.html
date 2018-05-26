@@ -15,10 +15,10 @@
     <link rel="shortcut icon" type="image/png" href="resources/favicon.png" />
     <title>Fuchsia</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="css/mdl.min.css">
+    <!--<link rel="stylesheet" href="css/mdc.min.css">-->
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-
 </head>
 
 <body>
@@ -75,8 +75,8 @@
         <div class="status_date">
             <span class="status_hour">00:00</span>
             <div>
-                <h6 class="status_day">SUNDAY, january 1</h6>
-                <h6 class="status_location">in Your Location</h6>
+                <h4 class="status_day">SUNDAY, january 1</h4>
+                <h4 class="status_location">in Your Location</h4>
             </div>
         </div>
         <div class="fuchsia">
@@ -87,8 +87,8 @@
                         <div class="status_date">
                             <span class="status_hour">00:00</span>
                             <div>
-                                <h6 class="status_day">SUNDAY, january 1</h6>
-                                <h6 class="status_location">in Your Location</h6>
+                                <h4 class="status_day">SUNDAY, january 1</h4>
+                                <h4 class="status_location">in Your Location</h4>
                             </div>
                         </div>
                         <div class="status">
@@ -104,69 +104,113 @@
                     </div>
                     <div class="menu_quick_settings">
                         <div class="menu_quick_option">
-                            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab active" id="menu_wifi">
-                                <i class="material-icons">wifi_lock</i>
+                            <button class="mdc-fab material-icons active" id="menu_wifi" aria-label="wifi">
+                                <span class="mdc-fab__icon">
+                                    wifi_lock
+                                </span>
                             </button>
                             <span class="option_title">Wifi</span>
                         </div>
                         <div class="menu_quick_option">
-                            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="menu_bluetooth">
-                                <i class="material-icons">bluetooth</i>
+                            <button class="mdc-fab material-icons" id="menu_bluetooth" aria-label="bluetooth">
+                                <span class="mdc-fab__icon">
+                                    bluetooth
+                                </span>
                             </button>
                             <span class="option_title">Bluetooth</span>
                         </div>
                         <div class="menu_quick_option">
-                            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab active" id="menu_disturb">
-                                <i class="material-icons">do_not_disturb_on</i>
+                            <button class="mdc-fab material-icons active" id="menu_disturb" aria-label="disturb">
+                                <span class="mdc-fab__icon">
+                                    do_not_disturb_on
+                                </span>
                             </button>
                             <span class="option_title">Do Not Disturb</span>
                         </div>
                         <div class="menu_quick_option">
-                            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="menu_location">
-                                <i class="material-icons">location_on</i>
+                            <button class="mdc-fab material-icons" id="menu_location" aria-label="location">
+                                <span class="mdc-fab__icon">
+                                    location_on
+                                </span>
                             </button>
                             <span class="option_title">Location</span>
                         </div>
                         <div class="menu_quick_option">
-                            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="menu_airplane">
-                                <i class="material-icons">airplanemode_active</i>
+                            <button class="mdc-fab material-icons" id="menu_airplane" aria-label="airplane">
+                                <span class="mdc-fab__icon">
+                                    airplanemode_active
+                                </span>
                             </button>
                             <span class="option_title">Airplane Mode</span>
                         </div>
                         <div class="menu_quick_option">
-                            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="menu_vpn">
-                                <i class="material-icons">vpn_key</i>
+                            <button class="mdc-fab material-icons" id="menu_vpn" aria-label="vpn">
+                                <span class="mdc-fab__icon">
+                                    vpn_key
+                                </span>
                             </button>
                             <span class="option_title">VPN Key</span>
                         </div>
                     </div>
                     <div class="menu_option">
-                        <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab active" id="menu_volume">
-                            <i class="material-icons">volume_up</i>
+                        <button class="mdc-fab material-icons active" id="menu_volume" aria-label="volume">
+                            <span class="mdc-fab__icon">
+                                volume_up
+                            </span>
                         </button>
-                        <input class="mdl-slider mdl-js-slider" type="range" min="0" max="100" value="20" tabindex="0">
+                        <div class="mdc-slider mdc-slider--discrete" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
+                            aria-label="Select Value">
+                            <div class="mdc-slider__track-container">
+                                <div class="mdc-slider__track"></div>
+                            </div>
+                            <div class="mdc-slider__thumb-container">
+                                <div class="mdc-slider__pin">
+                                    <span class="mdc-slider__pin-value-marker"></span>
+                                </div>
+                                <svg class="mdc-slider__thumb" width="21" height="21">
+                                    <circle cx="10.5" cy="10.5" r="7.875"></circle>
+                                </svg>
+                                <div class="mdc-slider__focus-ring"></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="menu_option">
-                        <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="menu_screen">
-                            <i class="material-icons">settings_brightness</i>
+                        <button class="mdc-fab material-icons" id="menu_screen" aria-label="screen">
+                            <span class="mdc-fab__icon">
+                                settings_brightness
+                            </span>
                         </button>
-                        <input class="mdl-slider mdl-js-slider" type="range" min="0" max="100" value="40" tabindex="0">
+                        <div class="mdc-slider mdc-slider--discrete" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
+                            aria-label="Select Value">
+                            <div class="mdc-slider__track-container">
+                                <div class="mdc-slider__track"></div>
+                            </div>
+                            <div class="mdc-slider__thumb-container">
+                                <div class="mdc-slider__pin">
+                                    <span class="mdc-slider__pin-value-marker"></span>
+                                </div>
+                                <svg class="mdc-slider__thumb" width="21" height="21">
+                                    <circle cx="10.5" cy="10.5" r="7.875"></circle>
+                                </svg>
+                                <div class="mdc-slider__focus-ring"></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="menu_bottom_options">
-                        <button class="mdl-button mdl-js-button mdl-button--icon">
-                            <i class="material-icons">cast</i>
-                        </button>
+                        <i class="mdc-icon-toggle material-icons" id="menu_cast" role="button" aria-pressed="false" aria-label="Cast Screen">
+                            cast
+                        </i>
                         <div class="menu_more_options">
                             <button class="text_round_button signout">Sign Out</button>
-                            <button class="mdl-button mdl-js-button mdl-button--icon">
-                                <i class="material-icons">lock</i>
-                            </button>
-                            <button class="mdl-button mdl-js-button mdl-button--icon">
-                                <i class="material-icons">settings</i>
-                            </button>
-                            <button class="mdl-button mdl-js-button mdl-button--icon">
-                                <i class="material-icons">power_settings_new</i>
-                            </button>
+                            <i class="mdc-icon-toggle material-icons" id="menu_lock" role="button" aria-pressed="false" aria-label="Cast Screen">
+                                lock
+                            </i>
+                            <i class="mdc-icon-toggle material-icons" id="menu_settings" role="button" aria-pressed="false" aria-label="Cast Screen">
+                                settings
+                            </i>
+                            <i class="mdc-icon-toggle material-icons" id="menu_power" role="button" aria-pressed="false" aria-label="Cast Screen">
+                                power_settings_new
+                            </i>
                         </div>
                     </div>
 
@@ -235,12 +279,12 @@
         <div class="menu_option menu_volume">
             <i class="volume_upicon material-icons">volume_up</i>
             <span class="option_title">Volume</span>
-            <input class="mdl-slider mdl-js-slider" type="range" min="0" max="100" value="20" tabindex="0">
+            <input class="mdc-slider mdc-js-slider" type="range" min="0" max="100" value="20" tabindex="0">
         </div>
         <div class="menu_option menu_screen">
             <i class="material-icons">settings_brightness</i>
             <span class="option_title">Brightness</span>
-            <input class="mdl-slider mdl-js-slider" type="range" min="0" max="100" value="40" tabindex="0">
+            <input class="mdc-slider mdc-js-slider" type="range" min="0" max="100" value="40" tabindex="0">
         </div>
         <div class="menu_option menu_settings">
             <i class="material-icons">settings</i>
@@ -248,7 +292,7 @@
             <i class="material-icons">chevron_right</i>
         </div>
         <div class="menu_option">
-            <button class="signout mdl-button mdl-js-button mdl-js-ripple-effect">
+            <button class="signout mdc-button mdc-js-button mdc-js-ripple-effect">
                 Sign out
             </button>
         </div>
@@ -280,67 +324,67 @@
         </div>
         <div class="menu_quick_settings">
             <div class="menu_quick_option">
-                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab active" id="menu_wifi">
+                <button class="mdc-button mdc-js-button mdc-button--fab mdc-button--mini-fab active" id="menu_wifi">
                     <i class="material-icons">wifi_lock</i>
                 </button>
                 <span class="option_title">Wifi</span>
             </div>
             <div class="menu_quick_option">
-                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="menu_bluetooth">
+                <button class="mdc-button mdc-js-button mdc-button--fab mdc-button--mini-fab" id="menu_bluetooth">
                     <i class="material-icons">bluetooth</i>
                 </button>
                 <span class="option_title">Bluetooth</span>
             </div>
             <div class="menu_quick_option">
-                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab active" id="menu_disturb">
+                <button class="mdc-button mdc-js-button mdc-button--fab mdc-button--mini-fab active" id="menu_disturb">
                     <i class="material-icons">do_not_disturb_on</i>
                 </button>
                 <span class="option_title">Do Not Disturb</span>
             </div>
             <div class="menu_quick_option">
-                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="menu_location">
+                <button class="mdc-button mdc-js-button mdc-button--fab mdc-button--mini-fab" id="menu_location">
                     <i class="material-icons">location_on</i>
                 </button>
                 <span class="option_title">Location</span>
             </div>
             <div class="menu_quick_option">
-                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="menu_airplane">
+                <button class="mdc-button mdc-js-button mdc-button--fab mdc-button--mini-fab" id="menu_airplane">
                     <i class="material-icons">airplanemode_active</i>
                 </button>
                 <span class="option_title">Airplane Mode</span>
             </div>
             <div class="menu_quick_option">
-                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="menu_vpn">
+                <button class="mdc-button mdc-js-button mdc-button--fab mdc-button--mini-fab" id="menu_vpn">
                     <i class="material-icons">vpn_key</i>
                 </button>
                 <span class="option_title">VPN Key</span>
             </div>
         </div>
         <div class="menu_option">
-            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab active" id="menu_volume">
+            <button class="mdc-button mdc-js-button mdc-button--fab mdc-button--mini-fab active" id="menu_volume">
                 <i class="material-icons">volume_up</i>
             </button>
-            <input class="mdl-slider mdl-js-slider" type="range" min="0" max="100" value="20" tabindex="0">
+            <input class="mdc-slider mdc-js-slider" type="range" min="0" max="100" value="20" tabindex="0">
         </div>
         <div class="menu_option">
-            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="menu_screen">
+            <button class="mdc-button mdc-js-button mdc-button--fab mdc-button--mini-fab" id="menu_screen">
                 <i class="material-icons">settings_brightness</i>
             </button>
-            <input class="mdl-slider mdl-js-slider" type="range" min="0" max="100" value="40" tabindex="0">
+            <input class="mdc-slider mdc-js-slider" type="range" min="0" max="100" value="40" tabindex="0">
         </div>
         <div class="menu_bottom_options">
-            <button class="mdl-button mdl-js-button mdl-button--icon">
+            <button class="mdc-button mdc-js-button mdc-button--icon">
                 <i class="material-icons">cast</i>
             </button>
             <div class="menu_more_options">
                 <button class="text_round_button signout">Sign Out</button>
-                <button class="mdl-button mdl-js-button mdl-button--icon">
+                <button class="mdc-button mdc-js-button mdc-button--icon">
                     <i class="material-icons">lock</i>
                 </button>
-                <button class="mdl-button mdl-js-button mdl-button--icon">
+                <button class="mdc-button mdc-js-button mdc-button--icon">
                     <i class="material-icons">settings</i>
                 </button>
-                <button class="mdl-button mdl-js-button mdl-button--icon">
+                <button class="mdc-button mdc-js-button mdc-button--icon">
                     <i class="material-icons">power_settings_new</i>
                 </button>
             </div>
@@ -354,7 +398,7 @@
 
             <span class="username">Manuel Goulao</span>
             <!-- <div class="email">nmcain@gmail.com</div>-->
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect">
+            <button class="mdc-button mdc-js-button mdc-js-ripple-effect">
                 Sign out
             </button>
         </div>
@@ -381,7 +425,7 @@
         <div class="menu_option menu_volume">
             <i class="volume_upicon material-icons">volume_up</i>
             <span class="option_title">Volume</span>
-            <input style "margin-top:15px;" class="mdl-slider mdl-js-slider" type="range" min="0" max="100" value="80" tabindex="0" />
+            <input style "margin-top:15px;" class="mdc-slider mdc-js-slider" type="range" min="0" max="100" value="80" tabindex="0" />
         </div>
         <div class="menu_option menu_settings">
             <i class="material-icons">settings</i>
@@ -390,13 +434,13 @@
         </div>
         <div class="menu_option menu_notify">
             <span class="date">Wednesday, February 28</span>
-            <button class="mdl-button mdl-js-button mdl-button--icon">
+            <button class="mdc-button mdc-js-button mdc-button--icon">
                 <i class="material-icons">help_outline</i>
             </button>
-            <button class="mdl-button mdl-js-button mdl-button--icon">
+            <button class="mdc-button mdc-js-button mdc-button--icon">
                 <i class="material-icons">power_settings_new</i>
             </button>
-            <button class="mdl-button mdl-js-button mdl-button--icon">
+            <button class="mdc-button mdc-js-button mdc-button--icon">
                 <i class="material-icons">lock_outline</i>
             </button>
         </div>
@@ -417,21 +461,21 @@
                     <div class="card" id="inbox">
                         <img class="card_image" src="resources/ginbox_icon.png">
                         <div class="card-content">
-                            <h6 class="card_header">Inbox</h6>
+                            <h4 class="card_header">Inbox</h4>
                             <h5 class="card_text">You received a new email</h5>
                         </div>
                     </div>
                     <div class="card" id="recipes">
                         <img class="card_image" src="resources/recipes.jpg">
                         <div class="card-content">
-                            <h6 class="card_header">Google</h6>
+                            <h4 class="card_header">Google</h4>
                             <h5 class="card_text">See recipes for you</h5>
                         </div>
                     </div>
                     <div class="card" id="maps">
                         <img class="card_image" src="resources/ist.png">
                         <div class="card-content">
-                            <h6 class="card_header">Maps</h6>
+                            <h4 class="card_header">Maps</h4>
                             <h5 class="card_text">45 min drive to Work</h5>
                         </div>
                     </div>
@@ -481,7 +525,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="js/jquery.ui.touch-punch.min.js"></script>
-    <script src="js/material.min.js"></script>
+    <!--<script src="js/material.min.js"></script>-->
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
     <script src="js/fuse.min.js"></script>
     <script src="js/main.js"></script>
 </body>

@@ -196,7 +196,7 @@ $(document).ready(function () {
 
     // Change appData format to the used on Fuse.js
     var appDataList = [];
-    for(var app in appData) {
+    for (var app in appData) {
         appDataList.push(appData[app]);
     }
 
@@ -304,8 +304,8 @@ $(document).ready(function () {
 
     menuButton.click(function (e) {
         var buttonId = e.currentTarget.id;
-        var jqueryBtn = $("#"+buttonId);
-        if(jqueryBtn.hasClass("active")) {
+        var jqueryBtn = $("#" + buttonId);
+        if (jqueryBtn.hasClass("active")) {
             jqueryBtn.removeClass("active");
         } else {
             jqueryBtn.addClass("active");
@@ -319,14 +319,14 @@ $(document).ready(function () {
         showHome();
     });
 
+    $(document).keyup(function (e) {
+        var keyCode = e.keyCode;
+        if (keyCode == 72)
+            returnHome();
+    });
+
     homeButton.click(function () {
-        if (openedAppObj != undefined) {
-            openedAppObj.close();
-        }
-        showHome();
-        showAppHistory();
-        menu.removeClass("active");
-        showStatusBar();
+        returnHome();
     });
 
     searchInput.keyup(function () {
@@ -350,6 +350,16 @@ $(document).ready(function () {
         var cardId = e.currentTarget.id;
         openedAppObj = new App(cardId);
     });
+
+    function returnHome() {
+        if (openedAppObj != undefined) {
+            openedAppObj.close();
+        }
+        showHome();
+        showAppHistory();
+        menu.removeClass("active");
+        showStatusBar();
+    }
 
     function hideHome() {
         event.stopPropagation();
@@ -494,8 +504,6 @@ $(document).ready(function () {
         });
         function updateChargeInfo() {
             batteryIcon.html(battery.charging ? "battery_charging_full" : "battery_full");
-            console.log("Battery charging? "
-                + (battery.charging ? "Yes" : "No"));
         }
 
     });
@@ -512,7 +520,7 @@ $(document).ready(function () {
         addApp(app) {
             if (app instanceof App) {
                 this.refreshList(app);
-                
+
                 console.log("App list", this.appArray);
                 this.updateUI();
             }
