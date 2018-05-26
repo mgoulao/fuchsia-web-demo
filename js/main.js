@@ -1,5 +1,26 @@
 'use strict';
 
+// Fix Problem with the Scroll inside a draggable
+var init = function () {
+    document.addEventListener('touchstart', handler, true);
+    document.addEventListener('touchmove', handler, true);
+    document.addEventListener('touchend', handler, true);
+    document.addEventListener('touchcancel', handler, true);
+};
+
+var handler = function (event) {
+    var touch = event.changedTouches[0],
+        simulatedEvent = document.createEvent('MouseEvent');
+
+    simulatedEvent.initMouseEvent(
+        { touchstart: 'mousedown', touchmove: 'mousemove', touchend: 'mouseup' }[event.type],
+        true, true, window, 1,
+        touch.screenX, touch.screenY, touch.clientX, touch.clientY,
+        false, false, false, false, 0, null);
+
+    touch.target.dispatchEvent(simulatedEvent);
+};
+
 // Fix Viewport Height caused by the keyboard
 let viewheight = $(window).height();
 let viewwidth = $(window).width();
@@ -124,6 +145,7 @@ Number.prototype.roundTo = function (nTo) {
 }
 
 $(document).ready(function () {
+    init();
     var navbarTime = $("#navbar_time");
     var navbar = $(".navbar");
     var homeButton = $("#home_button");
@@ -152,6 +174,7 @@ $(document).ready(function () {
     var googleSearch = $(".google_search");
     var searchInput = $(".search_input");
     var dummyInput = $("#dummy_input");
+    var appsOverflow = $(".apps_overflow");
     var card = $(".card");
     var openedApp = $("#opened_app");
     var openedAppContent = $("#app_content");
@@ -196,7 +219,7 @@ $(document).ready(function () {
 
     // Change appData format to the used on Fuse.js
     var appDataList = [];
-    for(var app in appData) {
+    for (var app in appData) {
         appDataList.push(appData[app]);
     }
 
@@ -304,8 +327,8 @@ $(document).ready(function () {
 
     menuButton.click(function (e) {
         var buttonId = e.currentTarget.id;
-        var jqueryBtn = $("#"+buttonId);
-        if(jqueryBtn.hasClass("active")) {
+        var jqueryBtn = $("#" + buttonId);
+        if (jqueryBtn.hasClass("active")) {
             jqueryBtn.removeClass("active");
         } else {
             jqueryBtn.addClass("active");
@@ -319,14 +342,14 @@ $(document).ready(function () {
         showHome();
     });
 
+    $(document).keyup(function (e) {
+        var keyCode = e.keyCode;
+        if (keyCode == 72)
+            returnHome();
+    });
+
     homeButton.click(function () {
-        if (openedAppObj != undefined) {
-            openedAppObj.close();
-        }
-        showHome();
-        showAppHistory();
-        menu.removeClass("active");
-        showStatusBar();
+        returnHome();
     });
 
     searchInput.keyup(function () {
@@ -350,6 +373,16 @@ $(document).ready(function () {
         var cardId = e.currentTarget.id;
         openedAppObj = new App(cardId);
     });
+
+    function returnHome() {
+        if (openedAppObj != undefined) {
+            openedAppObj.close();
+        }
+        showHome();
+        showAppHistory();
+        menu.removeClass("active");
+        showStatusBar();
+    }
 
     function hideHome() {
         event.stopPropagation();
@@ -431,7 +464,11 @@ $(document).ready(function () {
             appHistory.css({ "transform": "translateY(" + topPositionRounded + "px)" });
             if (topPositionRounded == 0) {
                 hideSearchInput();
+                appsOverflow.css({ "overflow": "hidden" });
+            } else {
+                appsOverflow.css({ "overflow": "auto" });
             }
+
             $(this).animate({
                 'top': topPositionRounded
             });
@@ -494,8 +531,6 @@ $(document).ready(function () {
         });
         function updateChargeInfo() {
             batteryIcon.html(battery.charging ? "battery_charging_full" : "battery_full");
-            console.log("Battery charging? "
-                + (battery.charging ? "Yes" : "No"));
         }
 
     });
@@ -512,7 +547,7 @@ $(document).ready(function () {
         addApp(app) {
             if (app instanceof App) {
                 this.refreshList(app);
-                
+
                 console.log("App list", this.appArray);
                 this.updateUI();
             }
