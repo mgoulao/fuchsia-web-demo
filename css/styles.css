@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300');
 :root {
-    --lockscreen-h3-margin: 45vh auto 0 auto;
+    --lockscreen-h3-margin: 40vh auto 0 auto;
     --lockscreen-h3-font-size: 100px;
     --status-bar-width: 720px;
     --status-bar-grid-columns: 335px 50px 335px;
@@ -187,6 +187,7 @@ body {
     margin: var(--lockscreen-h3-margin);
     text-align: center;
     font-size: var(--lockscreen-h3-font-size);
+    font-weight: 300;
     color: #fff;
 }
 
@@ -543,8 +544,7 @@ button {
 
 .menu_bottom_options {
     width: 100%;
-    padding: 0 24px;
-    margin-top: 16px;
+    padding: 10px 24px;
     overflow: hidden;
 }
 
@@ -895,7 +895,7 @@ button {
         --small-cards-rows: 150px;
         --big-cards-rows: 150px;
         --menu-quick-settings-columns: 1fr 1fr 1fr;
-        --menu-active-height: 450px;
+        --menu-active-height: auto;
     }
     #app_history {
         margin: 0 auto;
@@ -939,7 +939,7 @@ button {
         right: 40px;
     }
     #menu_2 .menu_option {
-        padding: 16px 20px;
+        padding: 8px 20px;
         width: 98%;
     }
     .menu_bottom_options {
@@ -949,7 +949,7 @@ button {
         padding-top: 14px;
     }
     .card {
-        margin: 8px auto; 
+        margin: 8px auto;
     }
 }
 
@@ -960,7 +960,10 @@ button {
     .status div {
         right: 4px;
     }
+    .menu_bottom_options .text_round_button {
+        margin-right: 2px;
+    }
     .menu_bottom_options {
-        padding: 0 6px;
+        padding: 6px;
     }
 }

@@ -182,6 +182,8 @@ $(document).ready(function () {
     var bigCards = $(".big_cards");
     var smallCards = $(".small_cards");
     var openedAppObj;
+    var volumeSlider = new mdc.slider.MDCSlider(document.querySelector('#volume_slider'));
+    var brightnessSlider = new mdc.slider.MDCSlider(document.querySelector('#brightness_slider'));
 
     // Define Draggable Limits
     var slideHeight = $('body').height() * 0.5;
@@ -190,6 +192,7 @@ $(document).ready(function () {
     var appHistoryslideHeight;
     var appHistoryMin;
     var appHistoryMax;
+
 
     function setAppHistoryTop() {
         appHistoryslideHeight = -appHistory.height() + 180;
@@ -318,6 +321,10 @@ $(document).ready(function () {
             statusUserImage.addClass("active");
             hideHome();
             hideAppHistory();
+            setTimeout(function () {
+                brightnessSlider.layout();
+                volumeSlider.layout();
+            }, 400);
         }
     });
 
