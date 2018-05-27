@@ -351,7 +351,7 @@ $(document).ready(function () {
 
     $(document).keyup(function (e) {
         var keyCode = e.keyCode;
-        if (keyCode == 72)
+        if (keyCode == 91)
             returnHome();
     });
 
