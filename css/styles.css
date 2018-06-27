@@ -784,6 +784,11 @@ button {
     overflow: auto;
 }
 
+#app_content iframe {
+    width: 100%;
+    height: 98%;
+}
+
 /* App History */
 
 #app_history {
