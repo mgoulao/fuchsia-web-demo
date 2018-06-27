@@ -170,7 +170,7 @@ body {
 
 #lockscreen {
     position: absolute;
-    display: block;
+    display: none;
     width: 100%;
     height: 100%;
     z-index: 100;
@@ -850,6 +850,30 @@ button {
     height: 85%;
     background: #fff;
     border-radius: 4px;
+}
+
+.history_card_hover {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+}
+
+.history_card iframe {
+    width: 200%;
+    height: 200%;
+    -ms-transform: scale(0.5);
+    -moz-transform: scale(0.5);
+    -o-transform: scale(0.5);
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+
+    -ms-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
 }
 
 .loader {

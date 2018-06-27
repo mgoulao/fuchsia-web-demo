@@ -35,7 +35,7 @@ var appData = {
         "image": "resources/ginbox_icon.png",
         "source": "Inbox",
         "text": "You received a new email",
-        "content": "<h2>Content</h2>"
+        "content": ""
     },
     "recipes": {
         "title": "Recipes",
@@ -44,7 +44,7 @@ var appData = {
         "image": "resources/recipes.jpg",
         "source": "Google",
         "text": "See recipes for you",
-        "content": "<h2>Content</h2>"
+        "content": ""
     },
     "maps": {
         "title": "Maps",
@@ -53,7 +53,7 @@ var appData = {
         "image": "resources/ist.png",
         "source": "Maps",
         "text": "45 min drive to Work",
-        "content": "<h2>Content</h2>"
+        "content": ""
     },
     "alpha": {
         "title": "Alpha",
@@ -71,7 +71,7 @@ var appData = {
         "image": "resources/empty.png",
         "source": "",
         "text": "Story Eta",
-        "content": "<h2>Content</h2>"
+        "content": ""
     },
     "zeta": {
         "title": "Story Zeta",
@@ -80,7 +80,7 @@ var appData = {
         "image": "resources/empty.png",
         "source": "",
         "text": "Story Zeta",
-        "content": "<h2>Content</h2>"
+        "content": ""
     },
     "theta": {
         "title": "Story theta",
@@ -89,7 +89,7 @@ var appData = {
         "image": "resources/empty.png",
         "source": "",
         "text": "Story Theta",
-        "content": "<h2>Content</h2>"
+        "content": ""
     },
     "iota": {
         "title": "Story Iota",
@@ -98,7 +98,7 @@ var appData = {
         "image": "resources/empty.png",
         "source": "",
         "text": "Story Iota",
-        "content": "<h2>Content</h2>"
+        "content": ""
     }
 };
 
@@ -599,7 +599,9 @@ $(document).ready(function () {
             for (var i = 0; i < this.openAppsSize(); i++) {
                 var app = this.getApp(i)[0];
                 var id = this.getApp(i)[1];
-                var card = '<div class="history_card" style="border-top: 5px solid ' + app.color + '"></div>';
+
+                var card = '<div class="history_card" style="border-top: 5px solid ' + app.color + '">'+
+                app.content+'<div class="history_card_hover"></div></div>';
                 if (this.openAppsSize() - i < 3) {
                     bigCards.append('<div class="app_container" id="' + id + '">' + card +
                         '<h6>' + app.title + '</h6>' +
