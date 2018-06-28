@@ -62,7 +62,7 @@ var appData = {
         "image": "resources/empty.png",
         "source": "",
         "text": "Story Alpha",
-        "content": "<iframe src='alpha.html'></iframe>"
+        "content": "<div style='position:relative;height:100%;overflow:hidden'><iframe src='alpha.html' allowfullscreen></iframe></div>"
     },
     "eta": {
         "title": "Story Eta",

@@ -170,7 +170,7 @@ body {
 
 #lockscreen {
     position: absolute;
-    display: none;
+    display: block;
     width: 100%;
     height: 100%;
     z-index: 100;
@@ -777,6 +777,7 @@ button {
 }
 
 #app_content {
+    position: relative;
     background: #fff;
     height: calc(100% - 30px);
     border-bottom-left-radius: 6px;
@@ -785,8 +786,14 @@ button {
 }
 
 #app_content iframe {
+    position: absolute;
+    top:0;
+    left: 0;
     width: 100%;
     height: 98%;
+    margin: 0 auto;
+    padding: 0;
+    overflow: auto;
 }
 
 /* App History */
