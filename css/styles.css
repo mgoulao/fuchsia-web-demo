@@ -170,7 +170,7 @@ body {
 
 #lockscreen {
     position: absolute;
-    display: block;
+    display: none;
     width: 100%;
     height: 100%;
     z-index: 100;
@@ -443,45 +443,45 @@ button {
     background: #fff;
 }
 
-#menu_2 .menu_option {
+.menu .menu_option {
     padding: 8px 40px;
     width: 80%;
     margin: 0 auto;
     align-items: center;
 }
 
-#menu_2 .menu_option:hover {
+.menu .menu_option:hover {
     background: #fff;
 }
 
-#menu_2 .menu_option:last-child {
+.menu .menu_option:last-child {
     padding-top: 4px;
 }
 
-#menu_2 .menu_option:last-child button {
+.menu .menu_option:last-child button {
     margin: auto;
     top: -14px;
 }
 
-#menu_2 .menu_quick_settings {
+.menu .menu_quick_settings {
     display: grid;
     grid-template-columns: var(--menu-quick-settings-columns);
     grid-row-gap: 20px;
 }
 
-#menu_2 .menu_quick_option {
+.menu .menu_quick_option {
     display: grid;
     text-align: center;
 }
 
-#menu_2 .option_title {
+.menu .option_title {
     width: 100%;
     margin: 0;
     padding: 8px 0;
     color: #212121;
 }
 
-#menu_2 .menu_quick_settings button, #menu_2 .menu_option button {
+.menu .menu_quick_settings button, .menu .menu_option button {
     width: 40px;
     min-width: 40px;
     height: 40px;
@@ -490,15 +490,15 @@ button {
     box-shadow: none;
 }
 
-#menu_2 .menu_quick_settings button.active, #menu_2 .menu_option button.active {
+.menu .menu_quick_settings button.active, .menu .menu_option button.active {
     background: #1976D2
 }
 
-#menu_2 .menu_quick_settings button:focus, #menu_2 .menu_option button:focus {
+.menu .menu_quick_settings button:focus, .menu .menu_option button:focus {
     box-shadow: none;
 }
 
-#menu_2 .menu_quick_settings button.active:hover {
+.menu .menu_quick_settings button.active:hover {
     background: #1976D2;
     -webkit-tap-highlight-color: #1976D2;
     opacity: 1;
@@ -508,15 +508,15 @@ button {
     opacity: 0.01;
 }
 
-#menu_2 .menu_quick_settings button:active, #menu_2 .menu_option button:active {
+.menu .menu_quick_settings button:active, .menu .menu_option button:active {
     box-shadow: none;
 }
 
-#menu_2 .menu_quick_settings button .mdc-fab__icon, #menu_2 .menu_option button .mdc-fab__icon {
+.menu .menu_quick_settings button .mdc-fab__icon, .menu .menu_option button .mdc-fab__icon {
     color: #424242;
 }
 
-#menu_2 .menu_quick_settings button.active .mdc-fab__icon, #menu_2 .menu_option button.active .mdc-fab__icon {
+.menu .menu_quick_settings button.active .mdc-fab__icon, .menu .menu_option button.active .mdc-fab__icon {
     color: #fff;
 }
 
@@ -577,6 +577,27 @@ button {
 .menu_user button {
     position: absolute;
     right: 16px;
+}
+
+#quick_menu {
+    position: absolute;
+    width: var(--status-bar-width);
+    max-height: 440px;
+    height: var(--menu-active-height);
+    border-radius: 12px;
+    display: block;
+    left: 0;
+    right: 0;
+    bottom: -500px;
+    margin: auto;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    z-index: 4;
+    background: #fff;
+}
+
+#quick_menu.active {
+    bottom: 44px;
 }
 
 .user_icon {

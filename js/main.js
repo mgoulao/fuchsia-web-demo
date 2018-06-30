@@ -151,6 +151,7 @@ $(document).ready(function () {
     var homeButton = $("#home_button");
     var homeCards = $(".home_cards");
     var menu = $("#menu");
+    var quickMenu = $("#quick_menu");
     var menuButton = $("#menu_2 button");
     var statusMenu = $("#menu_2");
     var home = $("#home");
@@ -192,7 +193,6 @@ $(document).ready(function () {
     var appHistoryslideHeight;
     var appHistoryMin;
     var appHistoryMax;
-
 
     function setAppHistoryTop() {
         appHistoryslideHeight = -appHistory.height() + 180;
@@ -355,9 +355,16 @@ $(document).ready(function () {
             returnHome();
     });
 
-    homeButton.click(function () {
-        returnHome();
+    
+
+    homeButton.on( 'mousedown', function () {
+        longPress.start();
     });
+
+    homeButton.on( 'mouseup', function () {
+        longPress.end();
+    });
+
 
     searchInput.keyup(function () {
         var query = searchInput.val();
@@ -404,6 +411,14 @@ $(document).ready(function () {
         home.css({ "z-index": "1" });
         home.css({ "opacity": 1 });
         hideNavBar();
+    }
+
+    function toggleQuickMenu() {
+        if(quickMenu.hasClass("active")) 
+            quickMenu.removeClass("active");
+        else
+            quickMenu.addClass("active");
+        console.log("Long Press");
     }
 
     function showStatusBar() {
@@ -543,6 +558,26 @@ $(document).ready(function () {
 
     });
 
+    function LongPress() {
+        var time = 500, startTime = 0, endTime = 0;
+        this.start = function() {
+            startTime = new Date().getTime();
+        }
+    
+        this.end = function() {
+            endTime = new Date().getTime();
+            if(endTime - startTime < time) {
+                if(quickMenu.hasClass("active"))
+                    toggleQuickMenu();
+                else
+                    returnHome();
+            }
+            else {
+                toggleQuickMenu();
+            }
+        }
+    }
+
     // Classes
 
     /* Class representing a group of open Apps */
@@ -653,4 +688,6 @@ $(document).ready(function () {
     var appHistoryList = new OpenApps();
     updateHomeCards(appDataList.slice(0, 3));
 
+    //Long press
+    var longPress = new LongPress();
 })
