@@ -355,13 +355,19 @@ $(document).ready(function () {
             returnHome();
     });
 
-    
 
-    homeButton.on( 'mousedown', function () {
+
+    homeButton.on('mousedown', function (e) {
         longPress.start();
+        /* if (quickMenu.hasClass("active"))
+            toggleQuickMenu();
+        this.downTimer = setTimeout(function () {
+            toggleQuickMenu();
+        }, 500); */
     });
 
-    homeButton.on( 'mouseup', function () {
+    homeButton.on('mouseup', function (e) {
+        console.log("end");
         longPress.end();
     });
 
@@ -414,7 +420,7 @@ $(document).ready(function () {
     }
 
     function toggleQuickMenu() {
-        if(quickMenu.hasClass("active")) 
+        if (quickMenu.hasClass("active"))
             quickMenu.removeClass("active");
         else
             quickMenu.addClass("active");
@@ -559,22 +565,30 @@ $(document).ready(function () {
     });
 
     function LongPress() {
-        var time = 500, startTime = 0, endTime = 0;
-        this.start = function() {
+        var time = 500, startTime = 0, endTime = 0, downTimer = '';
+        this.start = function () {
+            if (quickMenu.hasClass("active"))
+                toggleQuickMenu();
+            else {
+                downTimer = setTimeout(function () {
+                    toggleQuickMenu();
+                }, time);
+            }
             startTime = new Date().getTime();
         }
-    
-        this.end = function() {
-            endTime = new Date().getTime();
-            if(endTime - startTime < time) {
-                if(quickMenu.hasClass("active"))
+
+        this.end = function () {
+            clearTimeout(downTimer);
+            /* endTime = new Date().getTime();
+            if (endTime - startTime < time) {
+                if (quickMenu.hasClass("active"))
                     toggleQuickMenu();
                 else
                     returnHome();
             }
             else {
                 toggleQuickMenu();
-            }
+            } */
         }
     }
 
@@ -635,8 +649,8 @@ $(document).ready(function () {
                 var app = this.getApp(i)[0];
                 var id = this.getApp(i)[1];
 
-                var card = '<div class="history_card" style="border-top: 5px solid ' + app.color + '">'+
-                app.content+'<div class="history_card_hover"></div></div>';
+                var card = '<div class="history_card" style="border-top: 5px solid ' + app.color + '">' +
+                    app.content + '<div class="history_card_hover"></div></div>';
                 if (this.openAppsSize() - i < 3) {
                     bigCards.append('<div class="app_container" id="' + id + '">' + card +
                         '<h6>' + app.title + '</h6>' +
