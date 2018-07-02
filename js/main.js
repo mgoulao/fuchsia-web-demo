@@ -152,7 +152,9 @@ $(document).ready(function () {
     var homeCards = $(".home_cards");
     var menu = $("#menu");
     var quickMenu = $("#quick_menu");
+    var quickMenuObfuscator = $("#quick_menu_obfuscator");
     var menuButton = $("#menu_2 button");
+    var quickMenuButton = $("#quick_menu button");
     var statusMenu = $("#menu_2");
     var home = $("#home");
     var appHistory = $("#app_history");
@@ -342,11 +344,23 @@ $(document).ready(function () {
         }
     });
 
+    quickMenuButton.click(function (e) {
+        var buttonId = e.currentTarget.id;
+        var jqueryBtn = $("#" + buttonId);
+        if (jqueryBtn.hasClass("active")) {
+            jqueryBtn.removeClass("active");
+        } else {
+            jqueryBtn.addClass("active");
+        }
+    });
+
     signOutButton.click(function () {
         lockScreen.show();
         lockScreen.fadeTo("fast", 1);
         statusMenu.removeClass("active");
-        showHome();
+        if(quickMenu.hasClass("active"))
+            toggleQuickMenu();
+        returnHome();
     });
 
     $(document).keyup(function (e) {
@@ -371,6 +385,10 @@ $(document).ready(function () {
         longPress.end();
     });
 
+
+    quickMenuObfuscator.click(function() {
+        toggleQuickMenu();
+    });
 
     searchInput.keyup(function () {
         var query = searchInput.val();
@@ -420,10 +438,14 @@ $(document).ready(function () {
     }
 
     function toggleQuickMenu() {
-        if (quickMenu.hasClass("active"))
+        if (quickMenu.hasClass("active")) {
             quickMenu.removeClass("active");
-        else
+            quickMenuObfuscator.removeClass("active");
+        }
+        else {
             quickMenu.addClass("active");
+            quickMenuObfuscator.addClass("active");
+        }
         console.log("Long Press");
     }
 
@@ -567,28 +589,22 @@ $(document).ready(function () {
     function LongPress() {
         var time = 500, startTime = 0, endTime = 0, downTimer = '';
         this.start = function () {
-            if (quickMenu.hasClass("active"))
+            downTimer = setTimeout(function () {
                 toggleQuickMenu();
-            else {
-                downTimer = setTimeout(function () {
-                    toggleQuickMenu();
-                }, time);
-            }
+            }, time);
+
             startTime = new Date().getTime();
         }
 
         this.end = function () {
             clearTimeout(downTimer);
-            /* endTime = new Date().getTime();
+            endTime = new Date().getTime();
             if (endTime - startTime < time) {
                 if (quickMenu.hasClass("active"))
                     toggleQuickMenu();
                 else
                     returnHome();
             }
-            else {
-                toggleQuickMenu();
-            } */
         }
     }
 

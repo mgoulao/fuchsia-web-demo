@@ -13,6 +13,7 @@
     --big-cards-rows: 215px;
     --menu-quick-settings-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     --menu-active-height: 360px;
+    --quick-menu-active-height: auto;
 }
 
 * {
@@ -549,6 +550,10 @@ button {
     overflow: hidden;
 }
 
+#quick_menu .menu_bottom_options {
+    padding: 0 24px;
+}
+
 .menu_more_options {
     display: flex;
     float: right;
@@ -558,7 +563,7 @@ button {
     color: #424242;
 }
 
-#menu_cast {
+#menu_cast, #quick_menu_cast {
     float: left;
 }
 
@@ -583,21 +588,37 @@ button {
     position: absolute;
     width: var(--status-bar-width);
     max-height: 440px;
-    height: var(--menu-active-height);
+    height: var(--quick-menu-active-height);
     border-radius: 12px;
     display: block;
     left: 0;
     right: 0;
     bottom: -500px;
+    padding: 16px;
     margin: auto;
     overflow: hidden;
     transition: all 0.4s ease;
-    z-index: 4;
+    z-index: 5;
     background: #fff;
 }
 
 #quick_menu.active {
-    bottom: 44px;
+    bottom: 50px;
+}
+
+#quick_menu_obfuscator {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: 40px;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.7s ease;
+    z-index: -1;
+}
+
+#quick_menu_obfuscator.active {
+    z-index: 4;
+    background: rgba(0, 0, 0, 0.5);
 }
 
 .user_icon {
@@ -996,13 +1017,17 @@ button {
         position: absolute;
         right: 40px;
     }
-    #menu_2 .menu_option {
+    #menu_2 .menu_option, #quick_menu .menu_option {
         padding: 8px 20px;
         width: 98%;
     }
     .menu_bottom_options {
         margin-top: 0;
     }
+    #quick_menu .menu_bottom_options {
+        padding: 0;
+    }
+
     .apps {
         padding-top: 14px;
     }
