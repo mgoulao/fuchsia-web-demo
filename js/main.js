@@ -314,7 +314,6 @@ $(document).ready(function () {
     })
 
     statusUserImage.click(function () {
-
         if (statusUserImage.hasClass("active")) {
             statusUserImage.removeClass("active");
             showHome();
@@ -335,23 +334,11 @@ $(document).ready(function () {
     });
 
     menuButton.click(function (e) {
-        var buttonId = e.currentTarget.id;
-        var jqueryBtn = $("#" + buttonId);
-        if (jqueryBtn.hasClass("active")) {
-            jqueryBtn.removeClass("active");
-        } else {
-            jqueryBtn.addClass("active");
-        }
+        toggleButton(e);
     });
 
     quickMenuButton.click(function (e) {
-        var buttonId = e.currentTarget.id;
-        var jqueryBtn = $("#" + buttonId);
-        if (jqueryBtn.hasClass("active")) {
-            jqueryBtn.removeClass("active");
-        } else {
-            jqueryBtn.addClass("active");
-        }
+        toggleButton(e);
     });
 
     signOutButton.click(function () {
@@ -381,10 +368,8 @@ $(document).ready(function () {
     });
 
     homeButton.on('mouseup', function (e) {
-        console.log("end");
         longPress.end();
     });
-
 
     quickMenuObfuscator.click(function() {
         toggleQuickMenu();
@@ -411,6 +396,16 @@ $(document).ready(function () {
         var cardId = e.currentTarget.id;
         openedAppObj = new App(cardId);
     });
+
+    function toggleButton(e) {
+        var buttonId = e.currentTarget.id;
+        var jqueryBtn = $("#" + buttonId);
+        if (jqueryBtn.hasClass("active")) {
+            jqueryBtn.removeClass("active");
+        } else {
+            jqueryBtn.addClass("active");
+        }
+    }
 
     function returnHome() {
         if (openedAppObj != undefined) {
