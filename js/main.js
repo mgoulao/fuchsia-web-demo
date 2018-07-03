@@ -187,6 +187,9 @@ $(document).ready(function () {
     var openedAppObj;
     var volumeSlider = new mdc.slider.MDCSlider(document.querySelector('#volume_slider'));
     var brightnessSlider = new mdc.slider.MDCSlider(document.querySelector('#brightness_slider'));
+    var quickVolumeSlider = new mdc.slider.MDCSlider(document.querySelector('#quick_volume_slider'));
+    var quickBrightnessSlider = new mdc.slider.MDCSlider(document.querySelector('#quick_brightness_slider'));
+
 
     // Define Draggable Limits
     var slideHeight = $('body').height() * 0.5;

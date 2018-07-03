@@ -274,7 +274,7 @@ button {
     display: grid;
     margin: 45vh auto 50px;
     grid-template-columns: var(--status-bar-grid-columns);
-    cursor: default;
+    cursor: url("../resources/fuchsia_cursor.cur"), default;
     transition: opacity 0.4s ease;
     z-index: 1;
 }
@@ -284,7 +284,7 @@ button {
     color: #616161;
     display: grid;
     grid-template-columns: var(--menu-status-bar-grid-columns);
-    cursor: default;
+    cursor: url("../resources/fuchsia_cursor.cur"), pointer;;
     transition: opacity 0.4s ease;
     z-index: 1;
 }
@@ -410,7 +410,7 @@ button {
     display: flex;
     padding: 8px;
     background: #fff;
-    cursor: url("../resources/fuchsia_cursor.cur"), pointer;
+    cursor: url("../resources/fuchsia_cursor.cur"), default;
 }
 
 #menu {
@@ -504,6 +504,10 @@ button {
     background: #1976D2;
     -webkit-tap-highlight-color: #1976D2;
     opacity: 1;
+}
+
+.mdc-fab, .mdc-icon-toggle {
+    cursor: url("../resources/fuchsia_cursor.cur"), pointer;
 }
 
 .mdc-fab:not(.mdc-ripple-upgraded):focus::before, .mdc-fab.mdc-ripple-upgraded--background-focused::before {
@@ -637,6 +641,10 @@ button {
 
 .menu_option:hover {
     background: #eee;
+}
+
+.mdc-slider {
+    cursor: url("../resources/fuchsia_cursor.cur"), pointer;
 }
 
 .menu_option .mdc-slider {
