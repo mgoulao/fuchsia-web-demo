@@ -42,8 +42,7 @@ And then:
     "color": "#3F51B5",
     "id": "yourAppId",
     "image": "resources/empty.png",
-    "source": "",
-    "text": "Story Alpha",
+    "text": "",
     "content": "<div style='position:relative;height:100%;overflow:hidden'><iframe src='YOUR_APP_HTML' allowfullscreen></iframe></div>"
 },
 ```

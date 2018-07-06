@@ -14,6 +14,7 @@
     --menu-quick-settings-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     --menu-active-height: 360px;
     --quick-menu-active-height: auto;
+    --default-cursor: url("../resources/fuchsia_cursor.cur"), default;
 }
 
 * {
@@ -26,7 +27,7 @@
     box-sizing: border-box;
     outline: none;
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-    cursor: url("../resources/fuchsia_cursor.cur"), default;
+    cursor: var(--default-cursor);
 }
 
 html {
@@ -274,7 +275,7 @@ button {
     display: grid;
     margin: 45vh auto 50px;
     grid-template-columns: var(--status-bar-grid-columns);
-    cursor: url("../resources/fuchsia_cursor.cur"), default;
+    cursor: var(--default-cursor);
     transition: opacity 0.4s ease;
     z-index: 1;
 }
@@ -410,7 +411,7 @@ button {
     display: flex;
     padding: 8px;
     background: #fff;
-    cursor: url("../resources/fuchsia_cursor.cur"), default;
+    cursor: var(--default-cursor);
 }
 
 #menu {
