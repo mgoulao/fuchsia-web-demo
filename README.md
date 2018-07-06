@@ -11,6 +11,43 @@ The Fuchsia Web Demo tries to simulate the UI and animations of Fuchsia OS. So a
 ![alt text](https://github.com/mgoulao/fuchsia-web-demo/blob/master/resources/print_2.png)
 ![alt text](https://github.com/mgoulao/fuchsia-web-demo/blob/master/resources/print_3.png)
 
+## Create Dummy App
+
+This repo goal is also to show simple dummy Apps with a futuristic UI.
+
+To create an App you can use this template:
+
+```
+<html>
+<head>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+</head>
+<body>
+  
+  <!--Content-->
+	
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+</body>
+</html>
+```
+
+And then:
+
+* Go to ```js/index.js``` and add your app to the appData variable with this format:
+```
+"yourAppId": {
+    "title": "Title",
+    "color": "#3F51B5",
+    "id": "yourAppId",
+    "image": "resources/empty.png",
+    "source": "",
+    "text": "Story Alpha",
+    "content": "<div style='position:relative;height:100%;overflow:hidden'><iframe src='YOUR_APP_HTML' allowfullscreen></iframe></div>"
+},
+```
+
 ## Built With
 
 * [MDC](https://github.com/material-components/material-components-web) - UI components
