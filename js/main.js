@@ -50,7 +50,7 @@ var appData = {
 		"id": "maps",
 		"image": "resources/ist.png",
 		"text": "45 min drive to Work",
-		"content": ""
+		"content": "<div style='position:relative;height:100%;overflow:hidden'><iframe src='maps.html' allowfullscreen></iframe></div>"
 	},
 	"alpha": {
 		"title": "Story Alpha",
