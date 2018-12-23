@@ -3,7 +3,7 @@ Pink + Purple + Web == Fuchsia Web Demo - (unofficial)
 
 ## Description
 
-The Fuchsia Web Demo tries to simulate the UI and animations of Fuchsia OS. So anyone can experience a little bit of the OS Google is developing. [LINK](https://mgoulao.github.io/fuchsia-web-demo/)
+The Fuchsia Web Demo tried to simulate the UI and animations of Fuchsia OS Armadillo. RIP Armadillo [LINK](https://mgoulao.github.io/fuchsia-web-demo/)
 
 ## Images
 
