@@ -296,6 +296,10 @@ button {
     margin: 0 8px 0 45px;
 }
 
+.status_vertical_container {
+    display: grid;
+}
+
 .status_hour {
     font-size: 45px;
     align-self: center;

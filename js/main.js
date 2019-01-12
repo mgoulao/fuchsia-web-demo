@@ -98,29 +98,29 @@ var appData = {
 
 function getMonth(m) {
 	switch (m) {
-		case 1: m = "JAN";
+		case 0: m = "JAN";
 			break;
-		case 2: m = "FEB";
+		case 1: m = "FEB";
 			break;
-		case 3: m = "MAR";
+		case 2: m = "MAR";
 			break;
-		case 4: m = "APR";
+		case 3: m = "APR";
 			break;
-		case 5: m = "MAY";
+		case 4: m = "MAY";
 			break;
-		case 6: m = "JUN";
+		case 5: m = "JUN";
 			break;
-		case 7: m = "JUL";
+		case 6: m = "JUL";
 			break;
-		case 8: m = "AUG";
+		case 7: m = "AUG";
 			break;
-		case 9: m = "SEP";
+		case 8: m = "SEP";
 			break;
-		case 10: m = "OCT";
+		case 9: m = "OCT";
 			break;
-		case 11: m = "NOV";
+		case 10: m = "NOV";
 			break;
-		case 12: m = "DEC";
+		case 11: m = "DEC";
 			break;
 	}
 	return m;

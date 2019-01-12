@@ -2,7 +2,7 @@
 
 <head>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+	<link rel="stylesheet" href="https://unpkg.com/material-components-web@0.43.0/dist/material-components-web.min.css">
 
 
 	<style>
@@ -52,6 +52,7 @@
 		.messages-list-content .mdc-list-item__text {
 			font-weight: 600;
 			font-size: 14px;
+			margin: auto 0;
 		}
 
 		.messages-list-content .mdc-list-item__meta {
@@ -59,6 +60,10 @@
 			margin-left: auto;
 			margin-right: 0;
 			font-size: 12px;
+		}
+
+		.messages-list-content .mdc-list-item__secondary-text {
+			margin-left: -4px;
 		}
 
 		.messages-list-new {
@@ -160,11 +165,11 @@
 		<div class="messages-list">
 			<div class="messages-list-header">
 				<h4>Messages</h4>
-				<div id="demo-menu" class="mdc-menu-anchor">
+				<div id="demo-menu" class="mdc-menu-surface--anchor">
 					<button id="settings" class="mdc-icon-button material-icons">more_vert</button>
 
-					<div class="mdc-menu" id="settings-menu" tabindex="-1">
-						<ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true">
+					<div class="mdc-menu mdc-menu-surface" id="settings-menu" tabindex="-1">
+						<ul class="mdc-list" role="menu" aria-hidden="true">
 							<li class="mdc-list-item" role="menuitem" tabindex="0">
 								Settings
 							</li>
