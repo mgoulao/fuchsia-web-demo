@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript">
+        var host = "mgoulao.github.io"
+        if (window.location.host == host && window.location.protocol != "https:") {
+            window.location.protocol = "https:"
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="description" content="Simple Web Demo that simulates Google's new OS. Works across devices.">
+    <link rel="manifest" href="manifest.json">
+    <link rel="shortcut icon" type="image/png" href="resources/favicon.png" />
+    <title>Fuchsia</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+</head>
+
+<body>
+
+    <div class="obfuscator"></div>
+
+    <div id="lockscreen">
+        <div class="obfuscator"></div>
+        <h3 id="lockscreen_hour">00:00</h3>
+        <div id="login_loader" class="loader"></div>
+        <button class="icon_round_button" id="lock_options_button">
+            <i class="material-icons">add</i>
+        </button>
+        <div class="lock_options">
+            <button class="icon_round_button" id="lock_options_close">
+                <i class="material-icons">close</i>
+            </button>
+            <button class="text_round_button" id="lock_options_wifi">
+                Wifi
+            </button>
+            <button class="text_round_button" id="lock_options_login">
+                Login
+            </button>
+            <button class="text_round_button" id="lock_options_guest">
+                Guest
+            </button>
+        </div>
+    </div>
+
+    <div class="navbar">
+        <div id="navbar_battery">
+            <span class="battery_level">0%</span>
+            <i class="battery_icon material-icons">battery_full</i>
+        </div>
+        <span id="navbar_time">8:33</span>
+        <div id="home_button">
+            <svg viewBox="0 0 24 24">
+                <path fill="#fff" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+            </svg>
+        </div>
+
+    </div>
+
+    <div class="navbar_2">
+        <span id="navbar_time">8:33</span>
+        <div id="home_button">
+            <svg viewBox="0 0 24 24">
+                <path fill="#fff" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+            </svg>
+        </div>
+    </div>
+
+    <div class="status_bar" unselectable="on">
+        <div class="status_date">
+            <span class="status_hour">00:00</span>
+            <div class="status_vertical_container">
+                <h4 class="status_day">SUNDAY, january 1</h4>
+                <h4 class="status_location">in Your Location</h4>
+            </div>
+        </div>
+        <div class="fuchsia">
+            <div class="menu_image_container">
+                <img src="resources/fuchsia_logo.png">
+                <div class="menu" id="menu_2">
+                    <div class="menu_status_bar">
+                        <div class="status_date">
+                            <span class="status_hour">00:00</span>
+                            <div>
+                                <h4 class="status_day">SUNDAY, january 1</h4>
+                                <h4 class="status_location">in Your Location</h4>
+                            </div>
+                        </div>
+                        <div class="status">
+                            <div>
+                                <span>GoogleWifi</span>
+                                <i class="material-icons">network_wifi</i>
+                            </div>
+                            <div>
+                                <span class="battery_level">0%</span>
+                                <i class="battery_icon material-icons">battery_full</i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu_quick_settings">
+                        <div class="menu_quick_option">
+                            <button class="mdc-fab material-icons active" id="menu_wifi" aria-label="wifi">
+                                <span class="mdc-fab__icon">
+                                    wifi_lock
+                                </span>
+                            </button>
+                            <span class="option_title">Wifi</span>
+                        </div>
+                        <div class="menu_quick_option">
+                            <button class="mdc-fab material-icons" id="menu_bluetooth" aria-label="bluetooth">
+                                <span class="mdc-fab__icon">
+                                    bluetooth
+                                </span>
+                            </button>
+                            <span class="option_title">Bluetooth</span>
+                        </div>
+                        <div class="menu_quick_option">
+                            <button class="mdc-fab material-icons active" id="menu_disturb" aria-label="disturb">
+                                <span class="mdc-fab__icon">
+                                    do_not_disturb_on
+                                </span>
+                            </button>
+                            <span class="option_title">Do Not Disturb</span>
+                        </div>
+                        <div class="menu_quick_option">
+                            <button class="mdc-fab material-icons" id="menu_location" aria-label="location">
+                                <span class="mdc-fab__icon">
+                                    location_on
+                                </span>
+                            </button>
+                            <span class="option_title">Location</span>
+                        </div>
+                        <div class="menu_quick_option">
+                            <button class="mdc-fab material-icons" id="menu_airplane" aria-label="airplane">
+                                <span class="mdc-fab__icon">
+                                    airplanemode_active
+                                </span>
+                            </button>
+                            <span class="option_title">Airplane Mode</span>
+                        </div>
+                        <div class="menu_quick_option">
+                            <button class="mdc-fab material-icons" id="menu_vpn" aria-label="vpn">
+                                <span class="mdc-fab__icon">
+                                    vpn_key
+                                </span>
+                            </button>
+                            <span class="option_title">VPN Key</span>
+                        </div>
+                    </div>
+                    <div class="menu_option">
+                        <button class="mdc-fab material-icons active" id="menu_volume" aria-label="volume">
+                            <span class="mdc-fab__icon">
+                                volume_up
+                            </span>
+                        </button>
+                        <div class="mdc-slider mdc-slider--discrete" id="volume_slider" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100"
+                            aria-valuenow="40" aria-label="Select Value">
+                            <div class="mdc-slider__track-container">
+                                <div class="mdc-slider__track"></div>
+                            </div>
+                            <div class="mdc-slider__thumb-container">
+                                <div class="mdc-slider__pin">
+                                    <span class="mdc-slider__pin-value-marker"></span>
+                                </div>
+                                <svg class="mdc-slider__thumb" width="21" height="21">
+                                    <circle cx="10.5" cy="10.5" r="7.875"> </circle>
+                                </svg>
+                                <div class="mdc-slider__focus-ring"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu_option">
+                        <button class="mdc-fab material-icons" id="menu_screen" aria-label="screen">
+                            <span class="mdc-fab__icon">
+                                settings_brightness
+                            </span>
+                        </button>
+                        <div class="mdc-slider mdc-slider--discrete" id="brightness_slider" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100"
+                            aria-valuenow="20" aria-label="Select Value">
+                            <div class="mdc-slider__track-container">
+                                <div class="mdc-slider__track"></div>
+                            </div>
+                            <div class="mdc-slider__thumb-container">
+                                <div class="mdc-slider__pin">
+                                    <span class="mdc-slider__pin-value-marker"></span>
+                                </div>
+                                <svg class="mdc-slider__thumb" width="21" height="21">
+                                    <circle cx="10.5" cy="10.5" r="7.875"> </circle>
+                                </svg>
+                                <div class="mdc-slider__focus-ring"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu_bottom_options">
+                        <i class="mdc-icon-toggle material-icons" id="menu_cast" role="button" aria-pressed="false" aria-label="Cast Screen">
+                            cast
+                        </i>
+                        <div class="menu_more_options">
+                            <button class="text_round_button signout">Sign Out</button>
+                            <i class="mdc-icon-toggle material-icons" id="menu_lock" role="button" aria-pressed="false" aria-label="Cast Screen">
+                                lock
+                            </i>
+                            <i class="mdc-icon-toggle material-icons" id="menu_settings" role="button" aria-pressed="false" aria-label="Cast Screen">
+                                settings
+                            </i>
+                            <i class="mdc-icon-toggle material-icons" id="menu_power" role="button" aria-pressed="false" aria-label="Cast Screen">
+                                power_settings_new
+                            </i>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+        <div class="status">
+            <div>
+                <span>GoogleWifi</span>
+                <i class="material-icons">network_wifi</i>
+            </div>
+            <div>
+                <span class="battery_level">0%</span>
+                <i class="battery_icon material-icons">battery_full</i>
+            </div>
+        </div>
+    </div>
+
+    <div id="quick_menu_obfuscator"></div>
+
+    <div class="menu" id="quick_menu">
+        <div class="menu_quick_settings">
+            <div class="menu_quick_option">
+                <button class="mdc-fab material-icons active" id="quick_menu_wifi" aria-label="wifi">
+                    <span class="mdc-fab__icon">
+                        wifi_lock
+                    </span>
+                </button>
+                <span class="option_title">Wifi</span>
+            </div>
+            <div class="menu_quick_option">
+                <button class="mdc-fab material-icons" id="quick_menu_bluetooth" aria-label="bluetooth">
+                    <span class="mdc-fab__icon">
+                        bluetooth
+                    </span>
+                </button>
+                <span class="option_title">Bluetooth</span>
+            </div>
+            <div class="menu_quick_option">
+                <button class="mdc-fab material-icons active" id="quick_menu_disturb" aria-label="disturb">
+                    <span class="mdc-fab__icon">
+                        do_not_disturb_on
+                    </span>
+                </button>
+                <span class="option_title">Do Not Disturb</span>
+            </div>
+            <div class="menu_quick_option">
+                <button class="mdc-fab material-icons" id="quick_menu_location" aria-label="location">
+                    <span class="mdc-fab__icon">
+                        location_on
+                    </span>
+                </button>
+                <span class="option_title">Location</span>
+            </div>
+            <div class="menu_quick_option">
+                <button class="mdc-fab material-icons" id="quick_menu_airplane" aria-label="airplane">
+                    <span class="mdc-fab__icon">
+                        airplanemode_active
+                    </span>
+                </button>
+                <span class="option_title">Airplane Mode</span>
+            </div>
+            <div class="menu_quick_option">
+                <button class="mdc-fab material-icons" id="quick_menu_vpn" aria-label="vpn">
+                    <span class="mdc-fab__icon">
+                        vpn_key
+                    </span>
+                </button>
+                <span class="option_title">VPN Key</span>
+            </div>
+        </div>
+        <div class="menu_option">
+            <button class="mdc-fab material-icons active" id="quick_menu_volume" aria-label="volume">
+                <span class="mdc-fab__icon">
+                    volume_up
+                </span>
+            </button>
+            <div class="mdc-slider mdc-slider--discrete" id="quick_volume_slider" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100"
+                aria-valuenow="40" aria-label="Select Value">
+                <div class="mdc-slider__track-container">
+                    <div class="mdc-slider__track"></div>
+                </div>
+                <div class="mdc-slider__thumb-container">
+                    <div class="mdc-slider__pin">
+                        <span class="mdc-slider__pin-value-marker"></span>
+                    </div>
+                    <svg class="mdc-slider__thumb" width="21" height="21">
+                        <circle cx="10.5" cy="10.5" r="7.875"> </circle>
+                    </svg>
+                    <div class="mdc-slider__focus-ring"></div>
+                </div>
+            </div>
+        </div>
+        <div class="menu_option">
+            <button class="mdc-fab material-icons" id="quick_menu_screen" aria-label="screen">
+                <span class="mdc-fab__icon">
+                    settings_brightness
+                </span>
+            </button>
+            <div class="mdc-slider mdc-slider--discrete" id="quick_brightness_slider" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100"
+                aria-valuenow="20" aria-label="Select Value">
+                <div class="mdc-slider__track-container">
+                    <div class="mdc-slider__track"></div>
+                </div>
+                <div class="mdc-slider__thumb-container">
+                    <div class="mdc-slider__pin">
+                        <span class="mdc-slider__pin-value-marker"></span>
+                    </div>
+                    <svg class="mdc-slider__thumb" width="21" height="21">
+                        <circle cx="10.5" cy="10.5" r="7.875"> </circle>
+                    </svg>
+                    <div class="mdc-slider__focus-ring"></div>
+                </div>
+            </div>
+        </div>
+        <div class="menu_bottom_options">
+            <i class="mdc-icon-toggle material-icons" id="quick_menu_cast" role="button" aria-pressed="false" aria-label="Cast Screen">
+                cast
+            </i>
+            <div class="menu_more_options">
+                <button class="text_round_button signout">Sign Out</button>
+                <i class="mdc-icon-toggle material-icons" id="quick_menu_lock" role="button" aria-pressed="false" aria-label="Cast Screen">
+                    lock
+                </i>
+                <i class="mdc-icon-toggle material-icons" id="quick_menu_settings" role="button" aria-pressed="false" aria-label="Cast Screen">
+                    settings
+                </i>
+                <i class="mdc-icon-toggle material-icons" id="quick_menu_power" role="button" aria-pressed="false" aria-label="Cast Screen">
+                    power_settings_new
+                </i>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu" id="menu">
+        <div class="menu_option menu_user">
+            <img class="user_icon" src="resources/fuchsia_logo.png">
+
+            <span class="username">Manuel Goulao</span>
+            <button class="mdc-button mdc-js-button mdc-js-ripple-effect">
+                Sign out
+            </button>
+        </div>
+        <div class="menu_option menu_key_board">
+            <i class="material-icons">keyboard</i>
+            <span class="option_title">US keyboard</span>
+            <i class="material-icons">chevron_right</i>
+        </div>
+        <div class="menu_option menu_wifi">
+            <i class="material-icons">wifi_lock</i>
+            <span class="option_title">Network</span>
+            <i class="material-icons">chevron_right</i>
+        </div>
+        <div class="menu_option menu_bluetooth">
+            <i class="material-icons">bluetooth</i>
+            <span class="option_title">Bluetooth</span>
+            <i class="material-icons">chevron_right</i>
+        </div>
+        <div class="menu_option menu_cast">
+            <i class="material-icons">cast</i>
+            <span class="option_title">Cast</span>
+            <i class="material-icons">chevron_right</i>
+        </div>
+        <div class="menu_option menu_volume">
+            <i class="volume_upicon material-icons">volume_up</i>
+            <span class="option_title">Volume</span>
+            <input style "margin-top:15px;" class="mdc-slider mdc-js-slider" type="range" min="0" max="100" value="80" tabindex="0" />
+        </div>
+        <div class="menu_option menu_settings">
+            <i class="material-icons">settings</i>
+            <span class="option_title">Settings</span>
+            <i class="material-icons">chevron_right</i>
+        </div>
+        <div class="menu_option menu_notify">
+            <span class="date">Wednesday, February 28</span>
+            <button class="mdc-button mdc-js-button mdc-button--icon">
+                <i class="material-icons">help_outline</i>
+            </button>
+            <button class="mdc-button mdc-js-button mdc-button--icon">
+                <i class="material-icons">power_settings_new</i>
+            </button>
+            <button class="mdc-button mdc-js-button mdc-button--icon">
+                <i class="material-icons">lock_outline</i>
+            </button>
+        </div>
+
+    </div>
+
+    <div id="home" unselectable="on">
+        <div class="google_search">
+            <img class="google_logo" src="resources/google_icon.png">
+            <input class="search_input" placeholder="Ask for anything">
+            <h4 id="dummy_input" class="active">Ask for anything</h4>
+            <img class="assistant_logo" src="resources/google_assistant_logo.png">
+        </div>
+
+        <div class="apps_overflow">
+            <div class="apps">
+                <div class="home_cards">
+                    <div class="card" id="inbox">
+                        <img class="card_image" src="resources/ginbox_icon.png">
+                        <div class="card-content">
+                            <h4 class="card_header">Inbox</h4>
+                            <h5 class="card_text">You received a new email</h5>
+                        </div>
+                    </div>
+                    <div class="card" id="recipes">
+                        <img class="card_image" src="resources/recipes.jpg">
+                        <div class="card-content">
+                            <h4 class="card_header">Google</h4>
+                            <h5 class="card_text">See recipes for you</h5>
+                        </div>
+                    </div>
+                    <div class="card" id="maps">
+                        <img class="card_image" src="resources/ist.png">
+                        <div class="card-content">
+                            <h4 class="card_header">Maps</h4>
+                            <h5 class="card_text">45 min drive to Work</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="opened_app">
+        <header>
+            <span id="app_title">Title</span>
+        </header>
+        <div id="app_content">Content</div>
+    </div>
+
+    <div id="app_history" unselectable="on">
+        <div class="small_cards"></div>
+        <div class="big_cards"></div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <script src="js/fuse.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

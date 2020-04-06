@@ -1,0 +1,1066 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300');
+:root {
+    --lockscreen-h3-margin: 40vh auto 0 auto;
+    --lockscreen-h3-font-size: 100px;
+    --status-bar-width: 720px;
+    --status-bar-grid-columns: 335px 50px 335px;
+    --menu-status-bar-grid-columns: 1fr 1fr;
+    --home-width: 800px;
+    --home-cards-grid-column: 50% 50%;
+    --app-history-width: 800px;
+    --app-history-grid-columns: 1fr 1fr;
+    --small-cards-rows: 205px;
+    --big-cards-rows: 215px;
+    --menu-quick-settings-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    --menu-active-height: 360px;
+    --quick-menu-active-height: auto;
+    --default-cursor: url("../resources/fuchsia_cursor.cur"), default;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    cursor: var(--default-cursor);
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    background: url("../resources/background-1.jpg") no-repeat fixed center;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.container {
+    position: relative;
+}
+
+.navbar {
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 99;
+}
+
+.navbar_2 {
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.9);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    display: none;
+}
+
+.navbar a {
+    float: right;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.navbar #home_button {
+    width: 18px;
+    height: 18px;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    margin: 10px auto;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: url("../resources/fuchsia_cursor.cur"), pointer;
+}
+
+.navbar_2 #home_button {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: url("../resources/fuchsia_cursor.cur"), pointer;
+}
+
+.navbar #home_button svg {
+    width: 18px;
+    height: 18px;
+}
+
+.navbar #navbar_time {
+    height: 40px;
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    align-self: center;
+    padding: 12px;
+    font-size: 16px;
+    cursor: url("../resources/fuchsia_cursor.cur"), pointer;
+}
+
+.navbar_2 #navbar_time {
+    height: 50px;
+    float: right;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    align-self: center;
+    padding: 16px;
+    font-size: 16px;
+    cursor: url("../resources/fuchsia_cursor.cur"), pointer;
+}
+
+#navbar_time:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.navbar #navbar_battery {
+    height: 40px;
+    float: right;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    align-self: center;
+    padding: 12px;
+    font-size: 16px;
+    display: inline-flex;
+    cursor: url("../resources/fuchsia_cursor.cur"), pointer;
+}
+
+.navbar #navbar_battery i {
+    width: 18px;
+    height: 18px;
+    font-size: 18px;
+}
+
+.navbar a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.navbar .launcher:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+#lockscreen {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background: #757575;
+    background-image: url("../resources/lockscreen.jpg");
+    background-size: cover;
+}
+
+#lockscreen h3 {
+    position: absolute;
+    margin: 0;
+    left: 0;
+    right: 0;
+    margin: var(--lockscreen-h3-margin);
+    text-align: center;
+    font-size: var(--lockscreen-h3-font-size);
+    font-weight: 300;
+    color: #fff;
+}
+
+button {
+    cursor: url("../resources/fuchsia_cursor.cur"), pointer;
+    text-transform: uppercase;
+}
+
+.icon_round_button {
+    position: relative;
+    border-radius: 50%;
+}
+
+.icon_round_button .material-icons {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-12px, -12px);
+    transform: translate(-12px, -12px);
+    line-height: 24px;
+    width: 24px;
+}
+
+.text_round_button {
+    border-radius: 50px;
+    padding: 0 18px;
+    text-align: center;
+}
+
+#lock_options_button {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    background: transparent;
+    border: 2px solid #fff;
+    bottom: 16px;
+    right: 16px;
+}
+
+#lock_options_button i {
+    color: #fff
+}
+
+.lock_options {
+    height: 48px;
+    position: absolute;
+    display: none;
+    background: transparent;
+    bottom: 16px;
+    right: 16px;
+    opacity: 0;
+}
+
+.lock_options.active {
+    display: flex;
+}
+
+.lock_options .container {
+    display: inline-flex;
+}
+
+.lock_options button {
+    height: 48px;
+    min-width: 48px;
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    margin-left: 16px;
+}
+
+.lock_options button i {
+    color: #fff;
+}
+
+.status_bar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: var(--status-bar-width);
+    height: 50px;
+    color: #fff;
+    display: grid;
+    margin: 45vh auto 50px;
+    grid-template-columns: var(--status-bar-grid-columns);
+    cursor: var(--default-cursor);
+    transition: opacity 0.4s ease;
+    z-index: 1;
+}
+
+.menu_status_bar {
+    width: 100%;
+    color: #616161;
+    display: grid;
+    grid-template-columns: var(--menu-status-bar-grid-columns);
+    cursor: url("../resources/fuchsia_cursor.cur"), pointer;;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+}
+
+.status_date {
+    height: 100%;
+    display: flex;
+    margin: 0 8px 0 45px;
+}
+
+.status_vertical_container {
+    display: grid;
+}
+
+.status_hour {
+    font-size: 45px;
+    align-self: center;
+}
+
+.status_date h4 {
+    margin: 0 0 0 12px;
+    line-height: 24px;
+}
+
+.status_location {
+    font-weight: 400;
+}
+
+.status, .status div {
+    align-self: center;
+    display: flex;
+    align-items: flex-end;
+    margin: auto 16px auto auto;
+}
+
+.status div {
+    padding: 12px;
+}
+
+.status div span {
+    padding-right: 8px;
+    font-size: 16px;
+}
+
+.fuchsia img {
+    width: 50px;
+    height: 50px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    background: #fff;
+    border-radius: 50%;
+    margin: auto;
+    padding: 2px;
+    object-fit: cover;
+    cursor: url("../resources/fuchsia_cursor.cur"), pointer;
+    transition: all 0.5s ease;
+    z-index: 100;
+}
+
+.fuchsia.active img {
+    width: 60px;
+    height: 60px;
+    bottom: 235px;
+}
+
+.main {
+    padding: 16px;
+    margin-bottom: 30px;
+    height: 768px;
+    /* Used in this example to enable scrolling */
+}
+
+.mdlnotify {
+    background: #fff;
+    border-radius: 3px;
+    height: 400px;
+    width: 600px;
+    box-shadow: 0px 0px 10px #000;
+    margin-top: 150px;
+}
+
+.iconf {
+    float: left;
+    height: 50px;
+    width: 50px;
+    margin-top: 15px;
+    margin-left: 20px;
+}
+
+.obfuscator {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.menu_image_container {
+    position: absolute;
+    display: block;
+    width: auto;
+    height: auto;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 99;
+    transition: all 0.4s ease;
+}
+
+.fuchsia.active .menu_image_container {
+    top: -150px;
+}
+
+.menu {
+    position: absolute;
+    display: none;
+    right: 0;
+    bottom: 50px;
+    background: #eee;
+    width: 350px;
+    border-radius: 2px;
+}
+
+.menu_option {
+    display: flex;
+    padding: 8px;
+    background: #fff;
+    cursor: var(--default-cursor);
+}
+
+#menu {
+    -webkit-box-shadow: 1px 2px 10px 2px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 1px 2px 10px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 1px 2px 10px 2px rgba(0, 0, 0, 0.3);
+    border: 1px solid #BDBDBD;
+    z-index: 99;
+    bottom: 40px;
+    margin: auto;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    z-index: 99;
+    background: #fff;
+}
+
+#menu_2 {
+    position: relative;
+    width: 0;
+    height: var(--menu-active-height);
+    max-height: 0;
+    border-radius: 50%;
+    display: block;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    margin-top: -30px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    z-index: -1;
+    background: #fff;
+}
+
+.menu .menu_option {
+    padding: 8px 40px;
+    width: 80%;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.menu .menu_option:hover {
+    background: #fff;
+}
+
+.menu .menu_option:last-child {
+    padding-top: 4px;
+}
+
+.menu .menu_option:last-child button {
+    margin: auto;
+    top: -14px;
+}
+
+.menu .menu_quick_settings {
+    display: grid;
+    grid-template-columns: var(--menu-quick-settings-columns);
+    grid-row-gap: 20px;
+}
+
+.menu .menu_quick_option {
+    display: grid;
+    text-align: center;
+}
+
+.menu .option_title {
+    width: 100%;
+    margin: 0;
+    padding: 8px 0;
+    color: #212121;
+}
+
+.menu .menu_quick_settings button, .menu .menu_option button {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    background: #E0E0E0;
+    margin: 0 auto;
+    box-shadow: none;
+}
+
+.menu .menu_quick_settings button.active, .menu .menu_option button.active {
+    background: #1976D2
+}
+
+.menu .menu_quick_settings button:focus, .menu .menu_option button:focus {
+    box-shadow: none;
+}
+
+.menu .menu_quick_settings button.active:hover {
+    background: #1976D2;
+    -webkit-tap-highlight-color: #1976D2;
+    opacity: 1;
+}
+
+.mdc-fab, .mdc-icon-toggle {
+    cursor: url("../resources/fuchsia_cursor.cur"), pointer;
+}
+
+.mdc-fab:not(.mdc-ripple-upgraded):focus::before, .mdc-fab.mdc-ripple-upgraded--background-focused::before {
+    opacity: 0.01;
+}
+
+.menu .menu_quick_settings button:active, .menu .menu_option button:active {
+    box-shadow: none;
+}
+
+.menu .menu_quick_settings button .mdc-fab__icon, .menu .menu_option button .mdc-fab__icon {
+    color: #424242;
+}
+
+.menu .menu_quick_settings button.active .mdc-fab__icon, .menu .menu_option button.active .mdc-fab__icon {
+    color: #fff;
+}
+
+.fuchsia.active #menu_2 {
+    border-radius: 12px;
+    width: var(--status-bar-width);
+    max-height: 440px;
+}
+
+#menu_2 .status_bar {
+    position: relative;
+    background: #fff;
+    margin: 0;
+    color: #777777;
+    margin-bottom: 12px;
+}
+
+#menu_2 .fuchsia img {
+    padding: 0;
+    margin-top: 8px;
+}
+
+#menu_2 .status_date {
+    padding: 12px 0;
+}
+
+.menu_bottom_options {
+    width: 100%;
+    padding: 10px 24px;
+    overflow: hidden;
+}
+
+#quick_menu .menu_bottom_options {
+    padding: 0 24px;
+}
+
+.menu_more_options {
+    display: flex;
+    float: right;
+}
+
+.menu_bottom_options i {
+    color: #424242;
+}
+
+#menu_cast, #quick_menu_cast {
+    float: left;
+}
+
+.menu_bottom_options .text_round_button {
+    height: 32px;
+    padding: 5px 16px;
+    margin-right: 12px;
+    font-size: 12px;
+    align-self: center;
+}
+
+.menu.active {
+    display: block;
+}
+
+.menu_user button {
+    position: absolute;
+    right: 16px;
+}
+
+#quick_menu {
+    position: absolute;
+    width: var(--status-bar-width);
+    max-height: 440px;
+    height: var(--quick-menu-active-height);
+    border-radius: 12px;
+    display: block;
+    left: 0;
+    right: 0;
+    bottom: -500px;
+    padding: 16px;
+    margin: auto;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    z-index: 5;
+    background: #fff;
+}
+
+#quick_menu.active {
+    bottom: 50px;
+}
+
+#quick_menu_obfuscator {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: 40px;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.7s ease;
+    z-index: -1;
+}
+
+#quick_menu_obfuscator.active {
+    z-index: 4;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.user_icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+}
+
+.username {
+    font-size: 15px;
+    color: #222222;
+    padding-left: 16px;
+    align-self: center;
+}
+
+.menu_option:hover {
+    background: #eee;
+}
+
+.mdc-slider {
+    cursor: url("../resources/fuchsia_cursor.cur"), pointer;
+}
+
+.menu_option .mdc-slider {
+    align-self: center;
+    width: -webkit-fill-available;
+    margin: 0 12px;
+}
+
+.menu_volume span, .menu_screen span {
+    width: 100px;
+}
+
+.option_title {
+    width: 270px;
+    padding-left: 16px;
+    align-self: center;
+}
+
+#home {
+    position: absolute;
+    display: block;
+    background: #eceff1;
+    border-radius: 5px;
+    width: var(--home-width);
+    height: 86%;
+    left: 0;
+    right: 0;
+    margin: 65vh auto 50px;
+    cursor: url("../resources/fuchsia_cursor.cur"), pointer;
+    transition: transform 0.3s ease-in, opacity 0.4s ease;
+    z-index: 1;
+}
+
+#home.active {
+    display: block;
+}
+
+.apps {
+    padding-top: 18px;
+}
+
+.google_search {
+    display: flex;
+    background: #fff;
+    border-radius: 5px;
+    height: 80px;
+    width: 100%;
+    align-self: center;
+    padding: 0 32px;
+}
+
+.search_input {
+    color: #777777;
+    font-size: 18px;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 600;
+    border: none;
+    margin-left: 32px;
+    display: none;
+}
+
+.search_input.active {
+    display: block;
+}
+
+#dummy_input {
+    color: #777777;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    margin-left: 32px;
+    display: none;
+    align-self: center;
+}
+
+#dummy_input.active {
+    display: block;
+}
+
+.google_logo {
+    width: 30px;
+    height: 30px;
+    align-self: center;
+}
+
+.assistant_logo {
+    position: absolute;
+    right: 32px;
+    width: 30px;
+    height: 30px;
+    align-self: center;
+}
+
+.apps_overflow {
+    height: 82%;
+    overflow: hidden;
+}
+
+.home_cards {
+    width: 100%;
+    display: inline-grid;
+    grid-template-columns: var(--home-cards-grid-column);
+}
+
+.card {
+    width: 90%;
+    height: 100px;
+    display: grid;
+    grid-template-columns: 25% 75%;
+    background: #fff;
+    border-radius: 8px;
+    margin: 16px auto;
+    transition: box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.card:active {
+    -webkit-box-shadow: 1px 4px 10px 2px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 1px 4px 10px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 4px 10px 2px rgba(0, 0, 0, 0.2);
+}
+
+.card_image {
+    width: 100%;
+    height: 100%;
+    background-color: #BDBDBD;
+    object-fit: cover;
+}
+
+.card-content {
+    position: relative;
+    padding: 18px;
+}
+
+.card_header {
+    width: 100%;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 300;
+    color: #777777;
+}
+
+.card_text {
+    margin: 0;
+    color: #212121;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+#notify {
+    position: relative;
+    display: none;
+}
+
+#opened_app {
+    position: absolute;
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 40px);
+    z-index: 3;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+#opened_app.active {
+    display: block;
+}
+
+#opened_app header {
+    background: #000;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    height: 30px;
+    font-size: 20px;
+    padding-top: 5px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+#app_content {
+    position: relative;
+    background: #fff;
+    height: calc(100% - 30px);
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    overflow: auto;
+}
+
+#app_content iframe {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 98%;
+    margin: 0 auto;
+    padding: 0;
+    overflow: auto;
+}
+
+/* App History */
+
+#app_history {
+    position: absolute;
+    width: var(--app-history-width);
+    left: 0;
+    right: 0;
+    top: -100vh;
+    margin: auto;
+    padding: 50px 0 50px 0;
+    transition: transform 0.1s ease-in;
+    z-index: 1;
+}
+
+.small_cards {
+    position: relative;
+    width: 85%;
+    min-height: 150px;
+    margin: 0 auto 32px auto;
+    display: grid;
+    grid-template-columns: var(--app-history-grid-columns);
+    grid-auto-rows: var(--small-cards-rows);
+    grid-gap: 32px 50px;
+}
+
+.big_cards {
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-columns: var(--app-history-grid-columns);
+    grid-auto-rows: var(--big-cards-rows);
+    grid-gap: 32px 50px;
+}
+
+.app_container {
+    position: relative;
+    cursor: url("../resources/fuchsia_cursor.cur"), pointer;
+    width: 100%;
+    height: 100%;
+}
+
+.app_container:nth-child(odd) {
+    justify-self: end
+}
+
+.app_container h6 {
+    height: 15%;
+    color: #E0E0E0;
+    font-weight: 600;
+    font-size: 14px;
+    margin: 0;
+    padding: 2px 6px;
+    text-transform: uppercase;
+}
+
+.history_card {
+    position: relative;
+    width: 100%;
+    height: 85%;
+    background: #fff;
+    border-radius: 4px;
+}
+
+.history_card_hover {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+}
+
+.history_card iframe {
+    width: 200%;
+    height: 200%;
+    -ms-transform: scale(0.5);
+    -moz-transform: scale(0.5);
+    -o-transform: scale(0.5);
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+
+    -ms-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+
+.loader {
+    position: relative;
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    background-color: #fd3f92;
+    border-radius: 50%;
+}
+
+.loader:after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    border: 0px solid white;
+    transform: translate(-50%, -50%);
+    animation: loading 1000ms ease-out forwards infinite;
+}
+
+@keyframes loading {
+    0% {
+        border: 0px solid white;
+    }
+    20% {
+        border: 8px solid white;
+        width: 0%;
+        height: 0%;
+    }
+    100% {
+        border: 8px solid white;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    :root {
+        --status-bar-width: 92%;
+        --status-bar-grid-columns: calc(50% - 25px) 50px calc(50% - 25px);
+        --home-width: 100%;
+        --app-history-width: 90%;
+        --app-history-grid-columns: auto;
+        --small-cards-rows: 150px;
+        --big-cards-rows: 150px;
+        --menu-quick-settings-columns: 1fr 1fr 1fr;
+        --menu-active-height: auto;
+    }
+    #app_history {
+        margin: 0 auto;
+    }
+    .small_cards {
+        width: 100%;
+    }
+    .menu_option .mdl-slider__container {
+        margin: 0;
+    }
+    .fuchsia.active .menu_image_container {
+        top: -205px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .status_date {
+        display: block;
+    }
+    .status_hour {
+        margin: 0 0 0 10px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    :root {
+        --home-cards-grid-column: 100%;
+        --lockscreen-h3-margin: 25vh auto 0 auto;
+        --lockscreen-h3-font-size: 80px;
+    }
+    .status div:first-child {
+        display: none;
+    }
+    .status_date div h4:nth-child(1) {
+        display: none;
+    }
+    .status div {
+        position: absolute;
+        right: 40px;
+    }
+    #menu_2 .menu_option, #quick_menu .menu_option {
+        padding: 8px 20px;
+        width: 98%;
+    }
+    .menu_bottom_options {
+        margin-top: 0;
+    }
+    #quick_menu .menu_bottom_options {
+        padding: 0;
+    }
+
+    .apps {
+        padding-top: 14px;
+    }
+    .card {
+        margin: 8px auto;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .status_date {
+        margin: 0 0 0 4px;
+    }
+    .status div {
+        right: 4px;
+    }
+    .menu_bottom_options .text_round_button {
+        margin-right: 2px;
+    }
+    .menu_bottom_options {
+        padding: 6px;
+    }
+}
