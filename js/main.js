@@ -59,39 +59,7 @@ var appData = {
 		"image": "resources/empty.png",
 		"text": "",
 		"content": "<div style='position:relative;height:100%;overflow:hidden'><iframe src='alpha.html' allowfullscreen></iframe></div>"
-	},
-	"eta": {
-		"title": "Story Eta",
-		"color": "#00695C",
-		"id": "eta",
-		"image": "resources/empty.png",
-		"text": "",
-		"content": ""
-	},
-	"zeta": {
-		"title": "Story Zeta",
-		"color": "#827717",
-		"id": "zeta",
-		"image": "resources/empty.png",
-		"text": "",
-		"content": ""
-	},
-	"theta": {
-		"title": "Story theta",
-		"color": "#E65100",
-		"id": "theta",
-		"image": "resources/empty.png",
-		"text": "",
-		"content": ""
-	},
-	"iota": {
-		"title": "Story Iota",
-		"color": "#1B5E20",
-		"id": "iota",
-		"image": "resources/empty.png",
-		"text": "",
-		"content": ""
-	}
+  }
 };
 
 // Helper functions
