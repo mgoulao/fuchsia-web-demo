@@ -142,7 +142,6 @@ $(document).ready(function () {
 	var navbar = $(".navbar");
 	var homeButton = $("#home_button");
 	var homeCards = $(".home_cards");
-	var menu = $("#menu");
 	var quickMenu = $("#quick_menu");
 	var quickMenuObfuscator = $("#quick_menu_obfuscator");
 	var menuButton = $("#menu_2 button");
@@ -253,8 +252,6 @@ $(document).ready(function () {
 			statusUserImage.removeClass("active");
 			showHome();
 			showAppHistory();
-		} else if (menu.hasClass("active")) {
-			menu.removeClass("active");
 		}
 	});
 
@@ -293,20 +290,6 @@ $(document).ready(function () {
 		}, 2000);
 
 	});
-
-	/*navbarTime.click(function () {
-		event.stopPropagation();
-		console.log("click time");
-		if (menu.hasClass("active")) {
-			menu.removeClass("active");
-		} else {
-			menu.addClass("active");
-		}
-	});*/
-
-	menu.click(function () {
-		event.stopPropagation();
-	})
 
 	statusUserImage.click(function () {
 		if (statusUserImage.hasClass("active")) {
@@ -408,7 +391,6 @@ $(document).ready(function () {
 		}
 		showHome();
 		showAppHistory();
-		menu.removeClass("active");
 		showStatusBar();
 	}
 
