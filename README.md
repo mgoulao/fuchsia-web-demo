@@ -35,7 +35,7 @@ To create an App you can use this template:
 
 And then:
 
-* Go to ```js/index.js``` and add your app to the appData variable with this format:
+* Go to ```js/main.js``` and add your app to the appData variable with this format:
 ```
 "yourAppId": {
     "title": "Title",
